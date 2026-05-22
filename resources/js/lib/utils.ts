@@ -10,3 +10,8 @@ export function cn(...inputs: ClassValue[]) {
 export function toUrl(url: NonNullable<InertiaLinkProps['href']>): string {
     return typeof url === 'string' ? url : url.url;
 }
+
+/** Public URL for static images shipped with the backend theme. */
+export function backendImage(filename: string): string {
+    return `/backend/assets/images/${filename.replace(/^\//, '')}`;
+}

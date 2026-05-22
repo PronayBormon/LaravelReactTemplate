@@ -275,7 +275,7 @@ export default function Dashboard() {
                                     <a className="fw-medium fs-16 text-secondary hover-text d-inline-block" href="#" style={{ marginTop: "84px" }}>
                                         Details View
                                     </a>
-                                    <img alt="man" className="position-absolute bottom-0 end-0 pe-3" src="assets/images/man.png" />
+                                    <img alt="man" className="position-absolute bottom-0 end-0 pe-3" src="/backend/assets/images/man.png" />
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -311,7 +311,7 @@ export default function Dashboard() {
                                                 <img
                                                     alt="user12"
                                                     className="border border-3 border-white rounded-circle"
-                                                    src="/assets/images/user12.jpg"
+                                                    src="/backend/assets/images/user12.jpg"
                                                     style={{ width: "52px", height: "52px" }}
                                                 />
                                             </li>
@@ -320,7 +320,7 @@ export default function Dashboard() {
                                                 <img
                                                     alt="user13"
                                                     className="border border-3 border-white rounded-circle"
-                                                    src="/assets/images/user13.jpg"
+                                                    src="/backend/assets/images/user13.jpg"
                                                     style={{ width: "52px", height: "52px" }}
                                                 />
                                             </li>
@@ -329,7 +329,7 @@ export default function Dashboard() {
                                                 <img
                                                     alt="user14"
                                                     className="border border-3 border-white rounded-circle"
-                                                    src="/assets/images/user14.jpg"
+                                                    src="/backend/assets/images/user14.jpg"
                                                     style={{ width: "52px", height: "52px" }}
                                                 />
                                             </li>
@@ -338,7 +338,7 @@ export default function Dashboard() {
                                                 <img
                                                     alt="user15"
                                                     className="border border-3 border-white rounded-circle"
-                                                    src="/assets/images/user15.jpg"
+                                                    src="/backend/assets/images/user15.jpg"
                                                     style={{ width: "52px", height: "52px" }}
                                                 />
                                             </li>
@@ -347,7 +347,7 @@ export default function Dashboard() {
                                                 <img
                                                     alt="user16"
                                                     className="border border-3 border-white rounded-circle"
-                                                    src="/assets/images/user16.jpg"
+                                                    src="/backend/assets/images/user16.jpg"
                                                     style={{ width: "52px", height: "52px" }}
                                                 />
                                             </li>
@@ -416,7 +416,7 @@ export default function Dashboard() {
                                                 <td className="ps-0">
                                                     <a className="d-flex align-items-center text-decoration-none" href="product-details.html">
                                                         <div className="flex-shrink-0">
-                                                            <img alt="product1" className="rounded-circle" src="assets/images/product1.png" style={{ width: "50px", height: "50px" }} />
+                                                            <img alt="product1" className="rounded-circle" src="/backend/assets/images/product1.png" style={{ width: "50px", height: "50px" }} />
                                                         </div>
                                                         <div className="flex-grow-1 ms-12">
                                                             <h3 className="fw-normal hover-text">
@@ -442,7 +442,7 @@ export default function Dashboard() {
                                                 <td className="ps-0">
                                                     <a className="d-flex align-items-center text-decoration-none" href="product-details.html">
                                                         <div className="flex-shrink-0">
-                                                            <img alt="product2" className="rounded-circle" src="assets/images/product2.png" style={{ width: "50px", height: "50px" }} />
+                                                            <img alt="product2" className="rounded-circle" src="/backend/assets/images/product2.png" style={{ width: "50px", height: "50px" }} />
                                                         </div>
                                                         <div className="flex-grow-1 ms-12">
                                                             <h3 className="fw-normal hover-text">
@@ -468,7 +468,7 @@ export default function Dashboard() {
                                                 <td className="ps-0">
                                                     <a className="d-flex align-items-center text-decoration-none" href="product-details.html">
                                                         <div className="flex-shrink-0">
-                                                            <img alt="product3" className="rounded-circle" src="assets/images/product3.png" style={{ width: "50px", height: "50px" }} />
+                                                            <img alt="product3" className="rounded-circle" src="/backend/assets/images/product3.png" style={{ width: "50px", height: "50px" }} />
                                                         </div>
                                                         <div className="flex-grow-1 ms-12">
                                                             <h3 className="fw-normal hover-text">
@@ -494,7 +494,7 @@ export default function Dashboard() {
                                                 <td className="ps-0">
                                                     <a className="d-flex align-items-center text-decoration-none" href="product-details.html">
                                                         <div className="flex-shrink-0">
-                                                            <img alt="product4" className="rounded-circle" src="assets/images/product4.png" style={{ width: "50px", height: "50px" }} />
+                                                            <img alt="product4" className="rounded-circle" src="/backend/assets/images/product4.png" style={{ width: "50px", height: "50px" }} />
                                                         </div>
                                                         <div className="flex-grow-1 ms-12">
                                                             <h3 className="fw-normal hover-text">
@@ -520,7 +520,7 @@ export default function Dashboard() {
                                                 <td className="ps-0">
                                                     <a className="d-flex align-items-center text-decoration-none" href="product-details.html">
                                                         <div className="flex-shrink-0">
-                                                            <img alt="product5" className="rounded-circle" src="assets/images/product5.png" style={{ width: "50px", height: "50px" }} />
+                                                            <img alt="product5" className="rounded-circle" src="/backend/assets/images/product5.png" style={{ width: "50px", height: "50px" }} />
                                                         </div>
                                                         <div className="flex-grow-1 ms-12">
                                                             <h3 className="fw-normal hover-text">
@@ -546,7 +546,7 @@ export default function Dashboard() {
                                                 <td className="ps-0">
                                                     <a className="d-flex align-items-center text-decoration-none" href="product-details.html">
                                                         <div className="flex-shrink-0">
-                                                            <img alt="product6" className="rounded-circle" src="assets/images/product6.png" style={{ width: "50px", height: "50px" }} />
+                                                            <img alt="product6" className="rounded-circle" src="/backend/assets/images/product6.png" style={{ width: "50px", height: "50px" }} />
                                                         </div>
                                                         <div className="flex-grow-1 ms-12">
                                                             <h3 className="fw-normal hover-text">
@@ -705,7 +705,7 @@ export default function Dashboard() {
                                                 <td className="ps-0">
                                                     <div className="d-flex align-items-center text-decoration-none">
                                                         <div className="flex-shrink-0">
-                                                            <img alt="user6" className="rounded-circle" src="assets/images/user6.jpg" style={{ width: "50px", height: "50px" }} />
+                                                            <img alt="user6" className="rounded-circle" src="/backend/assets/images/user6.jpg" style={{ width: "50px", height: "50px" }} />
                                                         </div>
                                                         <div className="flex-grow-1 ms-12">
                                                             <h3 className="fw-normal">
@@ -754,7 +754,7 @@ export default function Dashboard() {
                                                 <td className="ps-0">
                                                     <div className="d-flex align-items-center text-decoration-none">
                                                         <div className="flex-shrink-0">
-                                                            <img alt="user7" className="rounded-circle" src="assets/images/user7.jpg" style={{ width: "50px", height: "50px" }} />
+                                                            <img alt="user7" className="rounded-circle" src="/backend/assets/images/user7.jpg" style={{ width: "50px", height: "50px" }} />
                                                         </div>
                                                         <div className="flex-grow-1 ms-12">
                                                             <h3 className="fw-normal">
@@ -803,7 +803,7 @@ export default function Dashboard() {
                                                 <td className="ps-0">
                                                     <div className="d-flex align-items-center text-decoration-none">
                                                         <div className="flex-shrink-0">
-                                                            <img alt="user8" className="rounded-circle" src="assets/images/user8.jpg" style={{ width: "50px", height: "50px" }} />
+                                                            <img alt="user8" className="rounded-circle" src="/backend/assets/images/user8.jpg" style={{ width: "50px", height: "50px" }} />
                                                         </div>
                                                         <div className="flex-grow-1 ms-12">
                                                             <h3 className="fw-normal">
@@ -852,7 +852,7 @@ export default function Dashboard() {
                                                 <td className="ps-0">
                                                     <div className="d-flex align-items-center text-decoration-none">
                                                         <div className="flex-shrink-0">
-                                                            <img alt="user9" className="rounded-circle" src="assets/images/user9.jpg" style={{ width: "50px", height: "50px" }} />
+                                                            <img alt="user9" className="rounded-circle" src="/backend/assets/images/user9.jpg" style={{ width: "50px", height: "50px" }} />
                                                         </div>
                                                         <div className="flex-grow-1 ms-12">
                                                             <h3 className="fw-normal">
@@ -901,7 +901,7 @@ export default function Dashboard() {
                                                 <td className="ps-0">
                                                     <div className="d-flex align-items-center text-decoration-none">
                                                         <div className="flex-shrink-0">
-                                                            <img alt="user10" className="rounded-circle" src="assets/images/user10.jpg" style={{ width: "50px", height: "50px" }} />
+                                                            <img alt="user10" className="rounded-circle" src="/backend/assets/images/user10.jpg" style={{ width: "50px", height: "50px" }} />
                                                         </div>
                                                         <div className="flex-grow-1 ms-12">
                                                             <h3 className="fw-normal">
@@ -950,7 +950,7 @@ export default function Dashboard() {
                                                 <td className="ps-0">
                                                     <div className="d-flex align-items-center text-decoration-none">
                                                         <div className="flex-shrink-0">
-                                                            <img alt="user11" className="rounded-circle" src="assets/images/user11.jpg" style={{ width: "50px", height: "50px" }} />
+                                                            <img alt="user11" className="rounded-circle" src="/backend/assets/images/user11.jpg" style={{ width: "50px", height: "50px" }} />
                                                         </div>
                                                         <div className="flex-grow-1 ms-12">
                                                             <h3 className="fw-normal">
@@ -1015,7 +1015,7 @@ export default function Dashboard() {
                                         <div className="col-lg-5 col-sm-6">
                                             <ul className="p-0 mb-0 list-unstyled last-child-none mt-4 mt-sm-0">
                                                 <li className="d-flex align-items-center gap-2 mb-9">
-                                                    <img alt="usa" className="rounded-circle" src="assets/images/usa.png" style={{ width: "20px", height: "20px" }} />
+                                                    <img alt="usa" className="rounded-circle" src="/backend/assets/images/usa.png" style={{ width: "20px", height: "20px" }} />
                                                     <span className="fs-15">
                                                         United States
                                                         <span className="text-secondary">
@@ -1024,7 +1024,7 @@ export default function Dashboard() {
                                                     </span>
                                                 </li>
                                                 <li className="d-flex align-items-center gap-2 mb-9">
-                                                    <img alt="china" className="rounded-circle" src="assets/images/china.png" style={{ width: "20px", height: "20px" }} />
+                                                    <img alt="china" className="rounded-circle" src="/backend/assets/images/china.png" style={{ width: "20px", height: "20px" }} />
                                                     <span className="fs-15">
                                                         China
                                                         <span className="text-secondary">
@@ -1033,7 +1033,7 @@ export default function Dashboard() {
                                                     </span>
                                                 </li>
                                                 <li className="d-flex align-items-center gap-2 mb-9">
-                                                    <img alt="australia" className="rounded-circle" src="assets/images/australia.png" style={{ width: "20px", height: "20px" }} />
+                                                    <img alt="australia" className="rounded-circle" src="/backend/assets/images/australia.png" style={{ width: "20px", height: "20px" }} />
                                                     <span className="fs-15">
                                                         Australia
                                                         <span className="text-secondary">
@@ -1042,7 +1042,7 @@ export default function Dashboard() {
                                                     </span>
                                                 </li>
                                                 <li className="d-flex align-items-center gap-2 mb-9">
-                                                    <img alt="germany" className="rounded-circle" src="assets/images/germany.png" style={{ width: "20px", height: "20px" }} />
+                                                    <img alt="germany" className="rounded-circle" src="/backend/assets/images/germany.png" style={{ width: "20px", height: "20px" }} />
                                                     <span className="fs-15">
                                                         Germany
                                                         <span className="text-secondary">
@@ -1051,7 +1051,7 @@ export default function Dashboard() {
                                                     </span>
                                                 </li>
                                                 <li className="d-flex align-items-center gap-2 mb-9">
-                                                    <img alt="canada" className="rounded-circle" src="assets/images/canada.png" style={{ width: "20px", height: "20px" }} />
+                                                    <img alt="canada" className="rounded-circle" src="/backend/assets/images/canada.png" style={{ width: "20px", height: "20px" }} />
                                                     <span className="fs-15">
                                                         Canada
                                                         <span className="text-secondary">
@@ -1060,7 +1060,7 @@ export default function Dashboard() {
                                                     </span>
                                                 </li>
                                                 <li className="d-flex align-items-center gap-2 mb-9">
-                                                    <img alt="france" className="rounded-circle" src="assets/images/france.png" style={{ width: "20px", height: "20px" }} />
+                                                    <img alt="france" className="rounded-circle" src="/backend/assets/images/france.png" style={{ width: "20px", height: "20px" }} />
                                                     <span className="fs-15">
                                                         France
                                                         <span className="text-secondary">
@@ -1195,7 +1195,7 @@ export default function Dashboard() {
                                                 <td>
                                                     <a className="d-flex align-items-center text-decoration-none" href="customers.html">
                                                         <div className="flex-shrink-0">
-                                                            <img alt="user1" className="rounded-circle" src="assets/images/user1.jpg" style={{ width: "50px", height: "50px" }} />
+                                                            <img alt="user1" className="rounded-circle" src="/backend/assets/images/user1.jpg" style={{ width: "50px", height: "50px" }} />
                                                         </div>
                                                         <div className="flex-grow-1 ms-12">
                                                             <h3 className="fw-medium hover-text mb-0 fs-16">
@@ -1240,7 +1240,7 @@ export default function Dashboard() {
                                                 <td>
                                                     <a className="d-flex align-items-center text-decoration-none" href="customers.html">
                                                         <div className="flex-shrink-0">
-                                                            <img alt="user2" className="rounded-circle" src="assets/images/user2.jpg" style={{ width: "50px", height: "50px" }} />
+                                                            <img alt="user2" className="rounded-circle" src="/backend/assets/images/user2.jpg" style={{ width: "50px", height: "50px" }} />
                                                         </div>
                                                         <div className="flex-grow-1 ms-12">
                                                             <h3 className="fw-medium hover-text mb-0 fs-16">
@@ -1285,7 +1285,7 @@ export default function Dashboard() {
                                                 <td>
                                                     <a className="d-flex align-items-center text-decoration-none" href="customers.html">
                                                         <div className="flex-shrink-0">
-                                                            <img alt="user3" className="rounded-circle" src="assets/images/user3.jpg" style={{ width: "50px", height: "50px" }} />
+                                                            <img alt="user3" className="rounded-circle" src="/backend/assets/images/user3.jpg" style={{ width: "50px", height: "50px" }} />
                                                         </div>
                                                         <div className="flex-grow-1 ms-12">
                                                             <h3 className="fw-medium hover-text mb-0 fs-16">
@@ -1330,7 +1330,7 @@ export default function Dashboard() {
                                                 <td>
                                                     <a className="d-flex align-items-center text-decoration-none" href="customers.html">
                                                         <div className="flex-shrink-0">
-                                                            <img alt="user4" className="rounded-circle" src="assets/images/user4.jpg" style={{ width: "50px", height: "50px" }} />
+                                                            <img alt="user4" className="rounded-circle" src="/backend/assets/images/user4.jpg" style={{ width: "50px", height: "50px" }} />
                                                         </div>
                                                         <div className="flex-grow-1 ms-12">
                                                             <h3 className="fw-medium hover-text mb-0 fs-16">
@@ -1375,7 +1375,7 @@ export default function Dashboard() {
                                                 <td>
                                                     <a className="d-flex align-items-center text-decoration-none" href="customers.html">
                                                         <div className="flex-shrink-0">
-                                                            <img alt="user1" className="rounded-circle" src="assets/images/user5.jpg" style={{ width: "50px", height: "50px" }} />
+                                                            <img alt="user1" className="rounded-circle" src="/backend/assets/images/user5.jpg" style={{ width: "50px", height: "50px" }} />
                                                         </div>
                                                         <div className="flex-grow-1 ms-12">
                                                             <h3 className="fw-medium hover-text mb-0 fs-16">

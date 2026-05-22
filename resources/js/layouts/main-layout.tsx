@@ -1,6 +1,7 @@
 import React from "react";
 import MainNavbar from "@/components/main-component/main-navbar";
 import MainSidebar from "@/components/main-component/main-sidebar";
+import { useBackendScripts } from "@/hooks/use-backend-scripts";
 
 export default function MainLayout({
     title = '',
@@ -10,6 +11,8 @@ export default function MainLayout({
     description?: string;
     children: React.ReactNode;
 }) {
+    useBackendScripts();
+
     return (<>
         <MainSidebar />
 
@@ -25,7 +28,7 @@ export default function MainLayout({
 
 
                 {/* <!-- Start Footer Area --> */}
-                <footer className="footer-area bg-white text-center rounded-10 rounded-bottom-0">
+                <footer className="footer-area bg-white text-center rounded-10 rounded-bottom-0 mt-3">
                     <p className="fs-16 text-body">
                         ©Copyright all right reserve
                     </p>

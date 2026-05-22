@@ -17,5 +17,6 @@ export type SideNavItem = {
     title: string;
     href: NonNullable<InertiaLinkProps['href']>;
     icon?: string;
+    icon_name?: string;
     isActive?: boolean;
 };

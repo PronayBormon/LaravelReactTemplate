@@ -17,3 +17,29 @@ declare module '@inertiajs/core' {
         };
     }
 }
+
+interface BootstrapDropdown {
+    getOrCreateInstance: (element: Element) => unknown;
+    getInstance: (element: Element) => { dispose: () => void } | null;
+}
+
+interface BootstrapTooltip {
+    getInstance: (element: Element) => { dispose: () => void } | null;
+    new (element: Element): unknown;
+}
+
+interface Window {
+    Menu?: new (
+        element: HTMLElement,
+        config?: Record<string, unknown>,
+    ) => { destroy: () => void };
+    Helpers?: {
+        scrollToActive: (animate: boolean) => void;
+        mainMenu?: unknown;
+    };
+    SimpleBar?: new (element: HTMLElement) => { unMount: () => void };
+    bootstrap?: {
+        Dropdown?: BootstrapDropdown;
+        Tooltip?: BootstrapTooltip;
+    };
+}

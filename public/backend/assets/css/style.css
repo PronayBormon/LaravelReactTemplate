@@ -18574,6 +18574,10 @@ Dark Mode SCSS
 .menu-vertical .menu-item.open .menu-link.active .menu-icon {
   color: #0f79f3;
 }
+.menu-vertical .menu-link:focus .menu-icon,.menu-vertical .menu-item .menu-link:focus {
+  color: #0f79f3;
+}
+
 .menu-vertical .menu-item.open .menu-link.menu-toggle.active .title {
   color: #0f79f3;
 }

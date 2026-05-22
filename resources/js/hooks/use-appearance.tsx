@@ -47,9 +47,12 @@ const applyTheme = (appearance: Appearance): void => {
     }
 
     const isDark = isDarkMode(appearance);
+    const theme = isDark ? 'dark' : 'light';
 
     document.documentElement.classList.toggle('dark', isDark);
-    document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+    document.documentElement.style.colorScheme = theme;
+    document.body.setAttribute('data-theme', theme);
+    localStorage.setItem('StarCode_theme', theme);
 };
 
 const subscribe = (callback: () => void) => {
@@ -73,6 +76,15 @@ const handleSystemThemeChange = (): void => applyTheme(currentAppearance);
 export function initializeTheme(): void {
     if (typeof window === 'undefined') {
         return;
+    }
+
+    const legacyTheme = localStorage.getItem('StarCode_theme');
+
+    if (!localStorage.getItem('appearance') && legacyTheme) {
+        const appearance: Appearance =
+            legacyTheme === 'dark' ? 'dark' : 'light';
+        localStorage.setItem('appearance', appearance);
+        setCookie('appearance', appearance);
     }
 
     if (!localStorage.getItem('appearance')) {

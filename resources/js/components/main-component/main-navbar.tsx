@@ -1,4 +1,12 @@
+import { useAppearance } from '@/hooks/use-appearance';
+
 export default function MainNavbar() {
+    const { resolvedAppearance, updateAppearance } = useAppearance();
+
+    const toggleTheme = () => {
+        updateAppearance(resolvedAppearance === 'dark' ? 'light' : 'dark');
+    };
+
     return (
         <>
             <header
@@ -126,7 +134,7 @@ export default function MainNavbar() {
                                                                     <img
                                                                         alt={lang.name}
                                                                         className="wh-30 rounded-circle"
-                                                                        src={`/assets/images/${lang.image}`}
+                                                                        src={`/backend/assets/images/${lang.image}`}
                                                                     />
                                                                 </div>
 
@@ -151,6 +159,8 @@ export default function MainNavbar() {
                                             className="switch-toggle dark-btn p-0 bg-transparent lh-0 border-0"
                                             id="switch-toggle"
                                             type="button"
+                                            onClick={toggleTheme}
+                                            aria-label="Toggle dark mode"
                                         >
                                             <span className="dark">
                                                 <i className="material-symbols-outlined">
@@ -232,7 +242,7 @@ export default function MainNavbar() {
                                                                     <img
                                                                         alt="user"
                                                                         className="rounded-circle"
-                                                                        src={`/assets/images/user${item}.jpg`}
+                                                                        src={`/backend/assets/images/user${item}.jpg`}
                                                                         style={{
                                                                             width: "44px",
                                                                             height: "44px",
