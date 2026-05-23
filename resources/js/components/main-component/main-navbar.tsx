@@ -178,7 +178,7 @@ export default function MainNavbar() {
                                 </li>
 
                                 {/* Calendar */}
-                                <li className="header-right-item calendar-item">
+                                {/* <li className="header-right-item calendar-item">
                                     <div className="dropdown notifications">
                                         <a
                                             className="btn btn-secondary border-0 p-0 position-relative"
@@ -192,10 +192,10 @@ export default function MainNavbar() {
                                             </span>
                                         </a>
                                     </div>
-                                </li>
+                                </li> */}
 
                                 {/* Messages */}
-                                <li className="header-right-item messages-item">
+                                {/* <li className="header-right-item messages-item">
                                     <div className="dropdown notifications noti messages">
                                         <button
                                             aria-expanded="false"
@@ -272,10 +272,10 @@ export default function MainNavbar() {
                                             </div>
                                         </div>
                                     </div>
-                                </li>
+                                </li> */}
 
                                 {/* Notifications */}
-                                <li className="header-right-item">
+                                {/* <li className="header-right-item">
                                     <div className="dropdown notifications noti">
                                         <button
                                             aria-expanded="false"
@@ -290,7 +290,7 @@ export default function MainNavbar() {
                                             <span className="count">3</span>
                                         </button>
                                     </div>
-                                </li>
+                                </li> */}
 
                                 {/* Profile */}
                                 <li className="header-right-item">

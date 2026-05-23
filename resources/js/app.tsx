@@ -6,6 +6,7 @@ import AppLayout from '@/layouts/app-layout';
 import AuthLayout from '@/layouts/auth-layout';
 import SettingsLayout from '@/layouts/settings/layout';
 import MainLayout from './layouts/main-layout';
+import 'react-quill-new/dist/quill.snow.css';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 

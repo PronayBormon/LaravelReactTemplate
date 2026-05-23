@@ -63,7 +63,7 @@
     <script src="{{asset('/backend/assets/js/prism.js')}}"></script>
     <script src="{{asset('/backend/assets/js/clipboard.min.js')}}"></script>
     <script src="{{asset('/backend/assets/js/simplebar.min.js')}}"></script>
-    <script src="{{asset('/backend/assets/js/apexcharts.min.js')}}"></script>
+    {{-- <script src="{{asset('/backend/assets/js/apexcharts.min.js')}}"></script> --}}
     <script src="{{asset('/backend/assets/js/echarts.min.js')}}"></script>
     <script src="{{asset('/backend/assets/js/swiper-bundle.min.js')}}"></script>
     <script src="{{asset('/backend/assets/js/fullcalendar.main.js')}}"></script>

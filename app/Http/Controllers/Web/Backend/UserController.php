@@ -33,7 +33,7 @@ class UserController extends Controller
 
             ->withQueryString();
 
-        return Inertia::render('users/index', [
+        return Inertia::render('backend/users/index', [
             'users' => $users,
             'filters' => $request->only([
                 'search',

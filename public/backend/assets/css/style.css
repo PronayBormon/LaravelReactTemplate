@@ -20456,6 +20456,7 @@ Dark Mode CSS
 }
 [data-theme=dark] .default-table-area .table-responsive .table tbody tr td {
   border-color: rgba(255, 255, 255, 0.0901960784);
+  color: #ededed;
 }
 [data-theme=dark] .default-table-area.table-recent-customer-rating.card-border-removed::before {
   background-color: #1b232d;
@@ -22381,3 +22382,6 @@ Dark Mode SCSS
 }
 
 /*# sourceMappingURL=style.css.map */
+[data-theme="dark"] .apexcharts-theme-light{
+    background-color: #1b232d ;
+}

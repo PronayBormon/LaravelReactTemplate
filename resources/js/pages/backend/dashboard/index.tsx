@@ -1,5 +1,5 @@
 import { Head } from '@inertiajs/react';
-import { dashboard } from '@/routes';
+import DashboardChart from '../../widget/chart';
 
 export default function Dashboard() {
     return (
@@ -37,8 +37,37 @@ export default function Dashboard() {
                                     </ul>
                                 </div>
                             </div>
-                            <div id="total_sales_chart" style={{ marginBottom: "-16px", marginTop: "-1.5px" }}>
-                            </div>
+                            {/* Area Chart */}
+                            <DashboardChart
+                                type="area"
+                                height="260"
+                                categories={[
+                                    'Jan',
+                                    'Feb',
+                                    'Mar',
+                                    'Apr',
+                                    'May',
+                                    'Jun',
+                                    'Jul',
+                                    'Aug',
+                                    'Sep',
+                                    'Oct',
+                                    'Nov',
+                                    'Dec',
+                                ]}
+                                series={[
+                                    {
+                                        name: 'Sales',
+                                        data: [120, 200, 150, 300, 280, 400, 120, 190, 150, 300, 280, 400],
+                                    },
+                                    {
+                                        name: 'Revenue',
+                                        data: [80, 150, 120, 250, 230, 350, 120, 200, 180, 150, 130, 190],
+                                    },
+                                ]}
+                            />
+
+
                         </div>
                     </div>
                     <div className="col-lg-6 col-xxl-3 col-xxxl-6">
@@ -229,11 +258,34 @@ export default function Dashboard() {
                                             </ul>
                                         </div>
                                     </div>
-                                    <h2 className="lh-1 fs-26 fw-medium" style={{ marginBottom: "-10px" }}>
-                                        $359K
-                                    </h2>
-                                    <div id="profit_chart" style={{ marginBottom: "-17px" }}>
-                                    </div>
+                                    <DashboardChart
+                                        type="bar"
+                                        height="225"
+                                        categories={[
+                                            'Jan',
+                                            'Feb',
+                                            'Mar',
+                                            'Apr',
+                                            'May',
+                                            'Jun',
+                                            'Jul',
+                                            'Aug',
+                                            'Sep',
+                                            'Oct',
+                                            'Nov',
+                                            'Dec',
+                                        ]}
+                                        series={[
+                                            {
+                                                name: 'Sales',
+                                                data: [120, 200, 150, 300, 280, 400, 120, 190, 150, 300, 280, 400],
+                                            },
+                                            {
+                                                name: 'Revenue',
+                                                data: [80, 150, 120, 250, 230, 350, 120, 200, 180, 150, 130, 190],
+                                            },
+                                        ]}
+                                    />
                                 </div>
                             </div>
                             <div className="col-lg-6">
@@ -251,11 +303,35 @@ export default function Dashboard() {
                                             </span>
                                         </span>
                                     </div>
-                                    <h2 className="lh-1 fs-26 fw-medium mb-0">
-                                        $5K+
-                                    </h2>
-                                    <div id="average_daily_sales_chart" style={{ marginBottom: "-17px" }}>
-                                    </div>
+
+                                    <DashboardChart
+                                        type="line"
+                                        height="225"
+                                        categories={[
+                                            'Jan',
+                                            'Feb',
+                                            'Mar',
+                                            'Apr',
+                                            'May',
+                                            'Jun',
+                                            'Jul',
+                                            'Aug',
+                                            'Sep',
+                                            'Oct',
+                                            'Nov',
+                                            'Dec',
+                                        ]}
+                                        series={[
+                                            {
+                                                name: 'Sales',
+                                                data: [120, 200, 150, 300, 280, 400, 120, 190, 150, 300, 280, 400],
+                                            },
+                                            {
+                                                name: 'Revenue',
+                                                data: [80, 150, 120, 250, 230, 350, 120, 200, 180, 150, 130, 190],
+                                            },
+                                        ]}
+                                    />
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -610,7 +686,7 @@ export default function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <div className="row">
+                {/* <div className="row">
                     <div className="col-lg-6 col-xxl-4 col-xxxl-6 mb-4">
                         <div className="card bg-white p-20 rounded-10 border border-white">
                             <div className="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-20">
@@ -1683,17 +1759,8 @@ export default function Dashboard() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </>
     );
 }
-
-Dashboard.layout = {
-    breadcrumbs: [
-        {
-            title: 'Dashboard',
-            href: dashboard(),
-        },
-    ],
-};
