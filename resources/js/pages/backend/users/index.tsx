@@ -1,10 +1,13 @@
-import { Head, router, useForm } from "@inertiajs/react";
+import MainLayout from "@/layouts/main-layout";
+import { Head, router, useForm, Link } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 
 interface User {
     id: number;
     name: string;
     email: string;
+    avatar: string;
+    role: string;
     created_at: string;
 }
 
@@ -46,6 +49,7 @@ export default function Index({ users, filters }: Props) {
         name: '',
         email: '',
         password: '',
+        avatar: '',
     });
 
     const submit = (e: React.FormEvent) => {
@@ -153,7 +157,10 @@ export default function Index({ users, filters }: Props) {
 
                             <div className="d-flex justify-content-between align-items-center flex-wrap gap-3 p-20">
 
-                                <button
+                                <Link className="bg-transparent text-primary fs-16 border-0 p-0" href={'/users/create'}>
+                                    + Add New User
+                                </Link>
+                                {/* <button
                                     className="bg-transparent text-primary fs-16 border-0 p-0"
                                     data-bs-target="#exampleModal"
                                     data-bs-toggle="modal"
@@ -167,7 +174,7 @@ export default function Index({ users, filters }: Props) {
 
                                     + Add New User
 
-                                </button>
+                                </button> */}
 
                                 {/* Filters */}
 
@@ -239,6 +246,10 @@ export default function Index({ users, filters }: Props) {
                                                 </th>
 
                                                 <th>
+                                                    Role
+                                                </th>
+
+                                                <th>
                                                     Join Date
                                                 </th>
 
@@ -263,11 +274,28 @@ export default function Index({ users, filters }: Props) {
                                                         </td>
 
                                                         <td>
-                                                            {user.name}
+                                                            <div className="d-flex align-items-center">
+                                                                <div className="flex-shrink-0">
+                                                                    <img alt="user15" className="rounded-circle" src={user.avatar ? `/${user.avatar}` : "/backend/assets/images/placholder.png"} style={{ width: "35px", height: "35px" }} />
+                                                                </div>
+                                                                <div className="flex-grow-1 ms-12">
+                                                                    <h4 className="fw-medium fs-16 mb-0">
+                                                                        {user.name}
+                                                                    </h4>
+                                                                </div>
+                                                            </div>
                                                         </td>
 
                                                         <td>
                                                             {user.email}
+                                                        </td>
+                                                        <td>
+                                                            <span className="badge bg-secondary">
+                                                                {user.role
+                                                                    ? user.role.charAt(0).toUpperCase() +
+                                                                    user.role.slice(1)
+                                                                    : 'User'}
+                                                            </span>
                                                         </td>
 
                                                         <td>
@@ -290,18 +318,23 @@ export default function Index({ users, filters }: Props) {
                                                                 style={{ gap: "12px" }}
                                                             >
 
-                                                                <button
+                                                                <Link
                                                                     className="bg-transparent p-0 border-0 hover-text-success"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#exampleModal"
-                                                                    onClick={() => editUser(user)}
+                                                                    href={`/user/show/${user.id}`}
                                                                 >
+                                                                    <i className="material-symbols-outlined fs-16 fw-normal text-body">
+                                                                        Visibility
+                                                                    </i>
+                                                                </Link>
 
+                                                                <Link
+                                                                    className="bg-transparent p-0 border-0 hover-text-success"
+                                                                    href={`/user/edit/${user.id}`}
+                                                                >
                                                                     <i className="material-symbols-outlined fs-16 fw-normal text-body">
                                                                         edit
                                                                     </i>
-
-                                                                </button>
+                                                                </Link>
 
                                                                 <button
                                                                     onClick={() =>
@@ -390,162 +423,6 @@ export default function Index({ users, filters }: Props) {
                                         ))}
 
                                     </ul>
-
-                                </div>
-
-                            </div>
-
-                            {/* Modal */}
-
-                            <div
-                                aria-hidden="true"
-                                aria-labelledby="exampleModalLabel"
-                                className="modal fade"
-                                id="exampleModal"
-                            >
-
-                                <div
-                                    className="modal-dialog modal-dialog-centered rounded-10"
-                                    style={{ maxWidth: "550px" }}
-                                >
-
-                                    <form
-                                        onSubmit={submit}
-                                        className="modal-content bg-white"
-                                    >
-
-                                        <div className="modal-header border-border-color-40 p-20">
-
-                                            <h1
-                                                className="modal-title fs-18 fw-medium mb-0"
-                                                id="exampleModalLabel"
-                                            >
-
-                                                {editId
-                                                    ? 'Edit User'
-                                                    : 'Add New User'}
-
-                                            </h1>
-
-                                            <button
-                                                aria-label="Close"
-                                                className="btn-close"
-                                                data-bs-dismiss="modal"
-                                                type="button"
-                                            >
-                                            </button>
-
-                                        </div>
-
-                                        <div className="modal-body p-20 pb-0">
-
-                                            <div className="row">
-
-                                                <div className="col-lg-12">
-
-                                                    <div className="mb-20">
-
-                                                        <label className="label">
-                                                            Name
-                                                        </label>
-
-                                                        <input
-                                                            className="form-control"
-                                                            type="text"
-                                                            value={data.name}
-                                                            onChange={(e) =>
-                                                                setData(
-                                                                    'name',
-                                                                    e.target.value
-                                                                )
-                                                            }
-                                                        />
-
-                                                    </div>
-
-                                                </div>
-
-                                                <div className="col-lg-12">
-
-                                                    <div className="mb-20">
-
-                                                        <label className="label">
-                                                            Email
-                                                        </label>
-
-                                                        <input
-                                                            className="form-control"
-                                                            type="email"
-                                                            value={data.email}
-                                                            onChange={(e) =>
-                                                                setData(
-                                                                    'email',
-                                                                    e.target.value
-                                                                )
-                                                            }
-                                                        />
-
-                                                    </div>
-
-                                                </div>
-
-                                                <div className="col-lg-12">
-
-                                                    <div className="mb-20">
-
-                                                        <label className="label">
-                                                            Password
-                                                        </label>
-
-                                                        <input
-                                                            className="form-control"
-                                                            type="password"
-                                                            value={data.password}
-                                                            onChange={(e) =>
-                                                                setData(
-                                                                    'password',
-                                                                    e.target.value
-                                                                )
-                                                            }
-                                                        />
-
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div className="modal-footer border-0 p-20 pt-0">
-
-                                            <button
-                                                className="btn btn-danger fw-normal text-white"
-                                                data-bs-dismiss="modal"
-                                                type="button"
-                                            >
-
-                                                Cancel
-
-                                            </button>
-
-                                            <button
-                                                className="btn btn-primary fw-normal text-white"
-                                                type="submit"
-                                                disabled={processing}
-                                            >
-
-                                                {processing
-                                                    ? 'Processing...'
-                                                    : editId
-                                                        ? 'Update'
-                                                        : 'Create'}
-
-                                            </button>
-
-                                        </div>
-
-                                    </form>
 
                                 </div>
 

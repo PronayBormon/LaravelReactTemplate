@@ -6,17 +6,24 @@ use App\Models\Setting;
 
 class SystemRepository
 {
-    /**
-     * Create a new class instance.
-     */
-    public function __construct()
+    public function first()
     {
-        //
+        return Setting::first();
     }
 
-
-    public function show($id)
+    public function create()
     {
-        return Setting::find($id);
+        return Setting::create([]);
+    }
+
+    public function update(
+        $id,
+        array $data
+    ) {
+        $setting = Setting::findOrFail($id);
+
+        $setting->update($data);
+
+        return $setting;
     }
 }

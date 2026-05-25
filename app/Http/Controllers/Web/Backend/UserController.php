@@ -4,11 +4,21 @@ namespace App\Http\Controllers\Web\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Services\Backend\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class UserController extends Controller
 {
+    protected $service;
+
+    public function __construct(
+        UserService $service
+    ) {
+        $this->service = $service;
+    }
+
     public function index(Request $request)
     {
         $users = User::query()
@@ -42,33 +52,93 @@ class UserController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        return Inertia::render('backend/users/create');
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'min:6'],
+            'avatar' => ['nullable'],
+            'role' => [
+                'nullable',
+                'string',
+            ],
         ]);
 
-        User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => bcrypt($validated['password']),
-        ]);
+        $data = $this->service->store($validated);
+
 
         return back()->with('success', 'User created successfully');
     }
 
-    public function update(Request $request, User $user)
+    public function edit($id)
     {
+        $user = User::find($id);
+
+        return Inertia::render('backend/users/edit', [
+            'user' => $user
+        ]);
+    }
+    public function show($id)
+    {
+        $user = User::find($id);
+
+        return Inertia::render('backend/users/show', [
+            'user' => $user
+        ]);
+    }
+
+    public function update(
+        Request $request,
+        $id
+    ) {
+        $user = User::findOrFail($id);
+
         $validated = $request->validate([
             'name' => ['required'],
-            'email' => ['required', 'email', 'unique:users,email,' . $user->id],
+
+            'email' => [
+                'required',
+                'email',
+                'unique:users,email,' . $user->id,
+            ],
+
+            'avatar' => [
+                'nullable',
+                'image',
+                'mimes:jpg,jpeg,png,webp',
+                'max:2048',
+            ],
+
+            'role' => [
+                'nullable',
+                'string',
+            ],
+
+            'password' => [
+                'nullable',
+                'confirmed',
+                'min:6',
+            ],
         ]);
 
-        $user->update($validated);
 
-        return back()->with('success', 'User updated successfully');
+
+
+        $this->service->update(
+            $id,
+            $validated
+        );
+
+        return back()->with(
+            'success',
+            'User updated successfully'
+        );
     }
 
     public function destroy(User $user)

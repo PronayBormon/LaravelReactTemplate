@@ -24,7 +24,7 @@ const items: MenuItem[] = [
     },
     {
         title: 'Profile',
-        href: '/settings/profile',
+        href: '/admin/profile',
         icon_name: 'account_circle',
         icon: 'material-symbols-outlined menu-icon',
     },

@@ -2,18 +2,26 @@ import React from "react";
 import MainNavbar from "@/components/main-component/main-navbar";
 import MainSidebar from "@/components/main-component/main-sidebar";
 import { useBackendScripts } from "@/hooks/use-backend-scripts";
+import { Toaster } from '@/components/ui/sonner';
+
+interface Props {
+    title?: string;
+
+    description?: string;
+
+    children?: React.ReactNode;
+}
 
 export default function MainLayout({
     title = '',
     children,
-}: {
-    title?: string;
-    description?: string;
-    children: React.ReactNode;
-}) {
+}: Props) {
     useBackendScripts();
 
     return (<>
+        <Toaster
+            position="top-right"
+        />
         <MainSidebar />
 
         {/* <!-- Start Main Content Area --> */}
@@ -21,7 +29,11 @@ export default function MainLayout({
             <div className="main-content d-flex flex-column">
 
                 <MainNavbar></MainNavbar>
-                <h1>{title}</h1>
+                <div className="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4 mt-1">
+                    <h3 className="mb-0">
+                        {title}
+                    </h3>
+                </div>
                 {/* <!-- End Header Area --> */}
                 {children}
 

@@ -2,6 +2,7 @@ import { Head, router, useForm } from "@inertiajs/react";
 import EditorComponent from '@/pages/widget/editor';
 import ImageUpload from '@/pages/widget/image-upload';
 import { useMemo } from 'react';
+import MainLayout from "@/layouts/main-layout";
 
 
 interface Props {
@@ -60,7 +61,7 @@ export default function System({
 
             footer_text:
                 setting?.footer_text || '',
-                
+
             copyright_text:
                 setting?.copyright_text || '',
         });
@@ -321,6 +322,11 @@ export default function System({
                             <ImageUpload
                                 label="Light Logo"
                                 file={data.light_logo}
+                                imageUrl={
+                                    setting?.light_logo
+                                        ? `/storage/${setting.light_logo}`
+                                        : ''
+                                }
                                 onChange={(file) =>
                                     setData('light_logo', file)
                                 }
@@ -332,6 +338,11 @@ export default function System({
                             <ImageUpload
                                 label="Dark Logo"
                                 file={data.dark_logo}
+                                imageUrl={
+                                    setting?.dark_logo
+                                        ? `/storage/${setting.dark_logo}`
+                                        : ''
+                                }
                                 onChange={(file) =>
                                     setData('dark_logo', file)
                                 }
@@ -345,6 +356,11 @@ export default function System({
                             <ImageUpload
                                 label="Favicon"
                                 file={data.favicon}
+                                imageUrl={
+                                    setting?.favicon
+                                        ? `/storage/${setting.favicon}`
+                                        : ''
+                                }
                                 onChange={(file) =>
                                     setData('favicon', file)
                                 }

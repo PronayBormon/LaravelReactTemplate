@@ -1,11 +1,11 @@
 import { Head } from '@inertiajs/react';
 import DashboardChart from '../../widget/chart';
+import MainLayout from '@/layouts/main-layout';
 
 export default function Dashboard() {
     return (
         <>
             <Head title="Dashboard" />
-
             <div className="main-content-container overflow-hidden">
                 <div className="row">
                     <div className="col-lg-6">
@@ -232,27 +232,17 @@ export default function Dashboard() {
                                         </h3>
                                         <div className="dropdown select-dropdown without-border">
                                             <button aria-expanded="false" className="dropdown-toggle bg-transparent text-secondary fs-15" data-bs-toggle="dropdown">
-                                                Last Month
+                                                Action
                                             </button>
                                             <ul className="dropdown-menu dropdown-menu-end bg-white border-0 box-shadow rounded-10" data-simplebar="">
                                                 <li>
                                                     <button className="dropdown-item text-secondary">
-                                                        Last Day
+                                                        Export
                                                     </button>
                                                 </li>
                                                 <li>
                                                     <button className="dropdown-item text-secondary">
-                                                        Last Week
-                                                    </button>
-                                                </li>
-                                                <li>
-                                                    <button className="dropdown-item text-secondary">
-                                                        Last Month
-                                                    </button>
-                                                </li>
-                                                <li>
-                                                    <button className="dropdown-item text-secondary">
-                                                        Last Year
+                                                        Print
                                                     </button>
                                                 </li>
                                             </ul>
@@ -262,27 +252,22 @@ export default function Dashboard() {
                                         type="bar"
                                         height="225"
                                         categories={[
-                                            'Jan',
-                                            'Feb',
-                                            'Mar',
-                                            'Apr',
-                                            'May',
-                                            'Jun',
-                                            'Jul',
-                                            'Aug',
-                                            'Sep',
-                                            'Oct',
-                                            'Nov',
-                                            'Dec',
+                                            '2026',
+                                            '2025',
+                                            '2024',
+                                            '2023',
+                                            '2022',
+                                            '2021',
+                                            '2020',
                                         ]}
                                         series={[
                                             {
                                                 name: 'Sales',
-                                                data: [120, 200, 150, 300, 280, 400, 120, 190, 150, 300, 280, 400],
+                                                data: [120, 200, 150, 300, 280, 280, 400],
                                             },
                                             {
                                                 name: 'Revenue',
-                                                data: [80, 150, 120, 250, 230, 350, 120, 200, 180, 150, 130, 190],
+                                                data: [350, 120, 200, 180, 150, 130, 190],
                                             },
                                         ]}
                                     />
