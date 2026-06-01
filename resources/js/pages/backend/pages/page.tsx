@@ -24,7 +24,7 @@ export default function Page({ page }: Props) {
         e: React.FormEvent
     ) => {
         e.preventDefault();
-        router.post('/page/update/' + page.slug, data, {
+        router.post('/admin/page/update/' + page.slug, data, {
             onSuccess: () => {
                 // reset();
                 console.log(data);

@@ -42,7 +42,7 @@ const items: MenuItem[] = [
             },
             {
                 title: 'Privacy and Policy',
-                href: '/admin/page/privacy-and-policy',
+                href: '/admin/page/privacy-policy',
             },
             {
                 title: 'Terms and Conditions',
