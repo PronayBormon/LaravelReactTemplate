@@ -11,10 +11,11 @@ class PageController extends Controller
 {
     public function privacyPolicy(): Response
     {
+        $page = Page::where('slug', 'privacy-policy')->first();
+        $legacyPage = Page::where('slug', 'privacy-and-policy')->first();
+
         return $this->renderPage(
-            Page::where('slug', 'privacy-policy')->first()
-                ?: Page::where('slug', 'privacy-and-policy')->first()
-                ?: Page::privacyPolicy()
+            filled($page?->content) ? $page : ($legacyPage ?: $page ?: Page::privacyPolicy())
         );
     }
 
