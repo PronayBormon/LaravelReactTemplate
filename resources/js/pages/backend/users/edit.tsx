@@ -44,7 +44,7 @@ export default function Edit({
         e.preventDefault();
 
         router.post(
-            `/users/${user.id}`,
+            `/admin/users/${user.id}`,
             {
                 ...data,
 
@@ -319,7 +319,7 @@ export default function Edit({
 
                                     <Link
                                         className="btn btn-danger fw-normal text-white"
-                                        href="/users"
+                                        href="/admin/users"
                                     >
                                         Cancel
                                     </Link>

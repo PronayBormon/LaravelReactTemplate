@@ -70,7 +70,7 @@ export default function System({
         e: React.FormEvent
     ) => {
         e.preventDefault();
-        router.post('/settings/system/update', data, {
+        router.post('/admin/settings/system/update', data, {
             onSuccess: () => {
                 // reset();
                 console.log(data);

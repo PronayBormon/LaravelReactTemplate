@@ -118,12 +118,6 @@ export function initBackendScripts(): void {
         document.body.setAttribute('sidebar-data-theme', 'sidebar-show');
     }
 
-    bindSidebarToggle('sidebar-burger-menu', '.sidebar-burger-menu', signal);
-    bindSidebarToggle(
-        'sidebar-burger-menu-close',
-        '.sidebar-burger-menu-close',
-        signal,
-    );
     bindSidebarToggle('header-burger-menu', '.header-burger-menu', signal);
 
     initSidebarMenu();

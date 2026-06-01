@@ -12,13 +12,13 @@ interface MenuItem extends SideNavItem {
 const items: MenuItem[] = [
     {
         title: 'Dashboard',
-        href: '/dashboard',
+        href: '/admin/dashboard',
         icon_name: 'dashboard',
         icon: 'material-symbols-outlined menu-icon',
     },
     {
         title: 'User List',
-        href: '/users',
+        href: '/admin/users',
         icon_name: 'group',
         icon: 'material-symbols-outlined menu-icon',
     },
@@ -30,16 +30,52 @@ const items: MenuItem[] = [
     },
 
     {
+        title: 'Pages',
+        href: '',
+        icon_name: 'Article',
+        icon: 'material-symbols-outlined menu-icon',
+
+        children: [
+            {
+                title: 'Faqs',
+                href: '/admin/faq/list',
+            },
+            {
+                title: 'Privacy and Policy',
+                href: '/admin/page/privacy-and-policy',
+            },
+            {
+                title: 'Terms and Conditions',
+                href: '/admin/page/terms-and-conditions',
+            },
+        ]
+    },
+
+    {
         title: 'Settings',
-        href: '#',
+        href: '',
         icon_name: 'Settings',
         icon: 'material-symbols-outlined menu-icon',
 
         children: [
             {
                 title: 'System',
-                href: '/settings/system',
+                href: '/admin/settings/system',
             },
+
+            {
+                title: 'SMTP Settings',
+                href: '/admin/settings/smtp',
+            },
+            {
+                title: 'Stripe',
+                href: '/admin/settings/stripe',
+            },
+
+            // {
+            //     title: 'Preferences',
+            //     href: '/settings/preferences',
+            // },
 
             // {
             //     title: 'Preferences',
@@ -61,6 +97,15 @@ export default function MainSidebar() {
         null
     );
 
+    const toggleSidebar = () => {
+        const current = document.body.getAttribute('sidebar-data-theme');
+
+        document.body.setAttribute(
+            'sidebar-data-theme',
+            current === 'sidebar-hide' ? 'sidebar-show' : 'sidebar-hide',
+        );
+    };
+
     return (
         <div className="sidebar-area" id="sidebar-area">
             <div className="logo position-relative d-flex align-items-center justify-content-between">
@@ -77,10 +122,42 @@ export default function MainSidebar() {
                         NAME
                     </span>
                 </Link>
+
+                {/* sidebar collaps button  */}
+                <button
+                    aria-label="Expand sidebar"
+                    className="sidebar-burger-menu-close bg-transparent py-3 border-0 opacity-0 z-n1 position-absolute top-50 end-0 translate-middle-y"
+                    id="sidebar-burger-menu-close"
+                    onClick={toggleSidebar}
+                    type="button"
+                >
+                    <span className="border-1 d-block for-dark-burger" style={{
+                        borderBottom: "1px solid #475569", height: "1px", width: "25px", transform: "rotate(45deg)"
+                    }}>
+                    </span>
+                    <span className="border-1 d-block for-dark-burger" style={{
+                        borderBottom: "1px solid #475569", height: "1px", width: "25px", transform: "rotate(-45deg)"
+                    }}>
+                    </span>
+                </button>
+                <button
+                    aria-label="Collapse sidebar"
+                    className="sidebar-burger-menu bg-transparent p-0 border-0"
+                    id="sidebar-burger-menu"
+                    onClick={toggleSidebar}
+                    type="button"
+                >
+                    <span className="border-1 d-block for-dark-burger" style={{ borderBottom: "1px solid #475569", height: "1px", width: "25px" }}>
+                    </span>
+                    <span className="border-1 d-block for-dark-burger" style={{ borderBottom: "1px solid #475569", height: "1px", width: "25px" }}>
+                    </span>
+                    <span className="border-1 d-block for-dark-burger" style={{ borderBottom: "1px solid #475569", height: "1px", width: "25px" }}>
+                    </span>
+                </button>
             </div>
 
             <aside
-                className="layout-menu menu-vertical menu active"
+                className="layout-menu menu-vertical menu "
                 data-simplebar=""
                 id="layout-menu"
             >
@@ -111,7 +188,7 @@ export default function MainSidebar() {
                             <li
                                 key={index}
                                 className={`menu-item ${isActive || isChildActive
-                                    ? 'open active'
+                                    ? 'open'
                                     : ''
                                     }`}
                             >
@@ -151,7 +228,7 @@ export default function MainSidebar() {
 
                                                     return (
                                                         <li
-                                                            className={`menu-item ${childActive
+                                                            className={`menu-item mb-1 ${childActive
                                                                 ? 'active'
                                                                 : ''
                                                                 }`}

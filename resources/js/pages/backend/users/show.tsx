@@ -74,14 +74,14 @@ export default function Show({
                         <div className="d-flex gap-2">
 
                             <Link
-                                href={`/user/edit/${user.id}`}
+                                href={`/admin/user/edit/${user.id}`}
                                 className="btn btn-primary text-white"
                             >
                                 Edit User
                             </Link>
 
                             <Link
-                                href="/users"
+                                href="/admin/users"
                                 className="btn btn-secondary"
                             >
                                 Back

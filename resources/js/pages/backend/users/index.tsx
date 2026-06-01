@@ -58,7 +58,7 @@ export default function Index({ users, filters }: Props) {
 
         if (editId) {
 
-            router.put(`/users/${editId}`, data, {
+            router.put(`/admin/users/${editId}`, data, {
                 onSuccess: () => {
                     reset();
                     setEditId(null);
@@ -67,7 +67,7 @@ export default function Index({ users, filters }: Props) {
 
         } else {
 
-            post('/users', {
+            post('/admin/users', {
                 onSuccess: () => {
                     reset();
                 },
@@ -90,14 +90,14 @@ export default function Index({ users, filters }: Props) {
 
         if (confirm('Delete this user?')) {
 
-            router.delete(`/users/${id}`);
+            router.delete(`/admin/users/${id}`);
         }
     };
 
     const applyFilters = () => {
 
         router.get(
-            '/users',
+            '/admin/users',
             {
                 search,
                 join_date: joinDate,
@@ -115,7 +115,7 @@ export default function Index({ users, filters }: Props) {
 
         setJoinDate('');
 
-        router.get('/users');
+        router.get('/admin/users');
     };
 
     useEffect(() => {
@@ -123,7 +123,7 @@ export default function Index({ users, filters }: Props) {
         const timeout = setTimeout(() => {
 
             router.get(
-                '/users',
+                '/admin/users',
                 {
                     search,
                     join_date: joinDate,
@@ -157,7 +157,7 @@ export default function Index({ users, filters }: Props) {
 
                             <div className="d-flex justify-content-between align-items-center flex-wrap gap-3 p-20">
 
-                                <Link className="bg-transparent text-primary fs-16 border-0 p-0" href={'/users/create'}>
+                                <Link className="bg-transparent text-primary fs-16 border-0 p-0" href={'/admin/users/create'}>
                                     + Add New User
                                 </Link>
                                 {/* <button
@@ -320,7 +320,7 @@ export default function Index({ users, filters }: Props) {
 
                                                                 <Link
                                                                     className="bg-transparent p-0 border-0 hover-text-success"
-                                                                    href={`/user/show/${user.id}`}
+                                                                    href={`/admin/user/show/${user.id}`}
                                                                 >
                                                                     <i className="material-symbols-outlined fs-16 fw-normal text-body">
                                                                         Visibility
@@ -329,7 +329,7 @@ export default function Index({ users, filters }: Props) {
 
                                                                 <Link
                                                                     className="bg-transparent p-0 border-0 hover-text-success"
-                                                                    href={`/user/edit/${user.id}`}
+                                                                    href={`/admin/user/edit/${user.id}`}
                                                                 >
                                                                     <i className="material-symbols-outlined fs-16 fw-normal text-body">
                                                                         edit

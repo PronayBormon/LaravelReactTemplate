@@ -31,7 +31,7 @@ export default function Create() {
     ) => {
         e.preventDefault();
 
-        post('/users', {
+        post('/admin/users', {
             forceFormData: true,
 
             preserveScroll: true,
