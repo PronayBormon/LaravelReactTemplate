@@ -8,6 +8,11 @@ use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
+    public function home(Request $request)
+    {
+        return redirect()->route('admin.dashboard.index');
+    }
+
     public function index(Request $request)
     {
 

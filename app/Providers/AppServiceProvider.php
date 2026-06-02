@@ -4,10 +4,14 @@ namespace App\Providers;
 
 use App\Models\Credential;
 use Carbon\CarbonImmutable;
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureDefaults();
+        $this->configureApiRateLimiting();
 
 
         /**
@@ -91,5 +96,20 @@ class AppServiceProvider extends ServiceProvider
                 ->uncompromised()
                 : null,
         );
+    }
+
+    protected function configureApiRateLimiting(): void
+    {
+        RateLimiter::for('auth-api', function (Request $request) {
+            $key = Str::lower((string) $request->input('email', 'guest')) . '|' . $request->ip();
+
+            return Limit::perMinute(10)->by($key);
+        });
+
+        RateLimiter::for('profile-api', function (Request $request) {
+            return Limit::perMinute(60)->by(
+                optional($request->user())->id ?: $request->ip()
+            );
+        });
     }
 }

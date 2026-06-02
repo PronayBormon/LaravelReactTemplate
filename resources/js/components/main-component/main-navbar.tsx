@@ -52,7 +52,7 @@ export default function MainNavbar() {
                                     </button>
                                 </li>
 
-                                <li>
+                                {/* <li>
                                     <form className="src-form position-relative">
                                         <input
                                             className="form-control"
@@ -66,7 +66,7 @@ export default function MainNavbar() {
                                             </span>
                                         </div>
                                     </form>
-                                </li>
+                                </li> */}
                             </ul>
                         </div>
                     </div>

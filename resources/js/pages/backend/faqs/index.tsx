@@ -1,4 +1,5 @@
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, router } from "@inertiajs/react";
+import Swal from "sweetalert2";
 
 interface Faq {
     id: number;
@@ -12,7 +13,39 @@ interface Props {
     faqs: Faq[];
 }
 
+
+
 export default function Index({ faqs }: Props) {
+
+    const deleteFaq = (id: number) => {
+        Swal.fire({
+            title: "Delete FAQ?",
+            text: "This action cannot be undone!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#dc3545",
+            cancelButtonColor: "#6c757d",
+            confirmButtonText: "Yes, delete FAQ",
+            cancelButtonText: "Cancel",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                router.delete(`/admin/faq/delete/${id}`, {
+                    onSuccess: () => {
+                        // Swal.fire({
+                        //     icon: "success",
+                        //     title: "Success",
+                        //     text: "FAQ deleted successfully.",
+                        //     timer: 1500,
+                        //     showConfirmButton: false,
+                        // });
+                    },
+
+                });
+
+            }
+        });
+    }
+
     return (
         <>
             <Head title="FAQs" />
@@ -58,22 +91,30 @@ export default function Index({ faqs }: Props) {
                                             <td className="text-body">{faq.question}</td>
                                             <td className="text-body">{faq.sort_order}</td>
                                             <td className="">
-                                                {faq.status
-                                                    ? "Active"
-                                                    : "Inactive"}
+                                                <span className={faq.status
+                                                    ? "text-success bg-success bg-opacity-10 fs-15 fw-normal d-inline-block default-badge"
+                                                    : "text-danger bg-danger bg-opacity-10 fs-15 fw-normal d-inline-block default-badge"}
+                                                >
+                                                    {faq.status
+                                                        ? "Active"
+                                                        : "Inactive"}
+                                                </span>
+
                                             </td>
                                             <td className="">
-                                                <div className="d-flex justify-content-end" style={{gap: "12px"}}>
+                                                <div className="d-flex justify-content-end" style={{ gap: "12px" }}>
                                                     <Link href={'/admin/faq/edit/' + faq.id} className="bg-transparent p-0 border-0 hover-text-success" data-bs-placement="top" data-bs-title="Edit" data-bs-toggle="tooltip">
                                                         <i className="material-symbols-outlined fs-16 fw-normal text-primary">
                                                             Edit
                                                         </i>
                                                     </Link>
-                                                    <Link className="bg-transparent p-0 border-0 hover-text-danger" data-bs-placement="top" data-bs-title="Delete" data-bs-toggle="tooltip">
+                                                    <button className="bg-transparent p-0 border-0 hover-text-danger"
+                                                        onClick={() => deleteFaq(faq.id)}
+                                                        data-bs-placement="top" data-bs-title="Delete" data-bs-toggle="tooltip">
                                                         <i className="material-symbols-outlined fs-16 fw-normal text-body">
                                                             delete
                                                         </i>
-                                                    </Link>
+                                                    </button>
                                                 </div>
                                             </td>
                                         </tr>

@@ -2,12 +2,18 @@ import { Link, usePage } from '@inertiajs/react';
 import { home, logout } from '@/routes';
 import type { SideNavItem } from '@/types';
 import { useState } from 'react';
+import { useAppearance } from '@/hooks/use-appearance';
+
 
 interface MenuItem extends SideNavItem {
     icon_name?: string;
     icon?: string;
     children?: MenuItem[];
 }
+
+// const { setting } = usePage().props as any;
+
+// console.log(setting + "===========================")
 
 const items: MenuItem[] = [
     {
@@ -16,86 +22,109 @@ const items: MenuItem[] = [
         icon_name: 'dashboard',
         icon: 'material-symbols-outlined menu-icon',
     },
+
     {
-        title: 'User List',
+        title: 'Users',
         href: '/admin/users',
         icon_name: 'group',
         icon: 'material-symbols-outlined menu-icon',
     },
+
+    {
+        title: 'Content',
+        href: '',
+        icon_name: 'article',
+        icon: 'material-symbols-outlined menu-icon',
+        children: [
+            {
+                title: 'FAQs',
+                href: '/admin/faq/list',
+            },
+            {
+                title: 'Privacy Policy',
+                href: '/admin/page/privacy-policy',
+            },
+            {
+                title: 'Terms & Conditions',
+                href: '/admin/page/terms-and-conditions',
+            },
+        ],
+    },
+
+    {
+        title: 'Queue Management',
+        href: '',
+        icon_name: 'queue',
+        icon: 'material-symbols-outlined menu-icon',
+        children: [
+            {
+                title: 'Pending Jobs',
+                href: '/admin/queues',
+            },
+            {
+                title: 'Failed Jobs',
+                href: '/admin/failed-jobs',
+            },
+        ],
+    },
+
+    {
+        title: 'System',
+        href: '',
+        icon_name: 'monitoring',
+        icon: 'material-symbols-outlined menu-icon',
+        children: [
+            {
+                title: 'Error Logs',
+                href: '/admin/logs',
+            },
+        ],
+    },
+
+    {
+        title: 'Settings',
+        href: '',
+        icon_name: 'settings',
+        icon: 'material-symbols-outlined menu-icon',
+        children: [
+            {
+                title: 'System Settings',
+                href: '/admin/settings/system',
+            },
+            {
+                title: 'SMTP Settings',
+                href: '/admin/settings/smtp',
+            },
+            {
+                title: 'Stripe Settings',
+                href: '/admin/settings/stripe',
+            },
+        ],
+    },
+
     {
         title: 'Profile',
         href: '/admin/profile',
         icon_name: 'account_circle',
         icon: 'material-symbols-outlined menu-icon',
     },
-
-    {
-        title: 'Pages',
-        href: '',
-        icon_name: 'Article',
-        icon: 'material-symbols-outlined menu-icon',
-
-        children: [
-            {
-                title: 'Faqs',
-                href: '/admin/faq/list',
-            },
-            {
-                title: 'Privacy and Policy',
-                href: '/admin/page/privacy-policy',
-            },
-            {
-                title: 'Terms and Conditions',
-                href: '/admin/page/terms-and-conditions',
-            },
-        ]
-    },
-
-    {
-        title: 'Settings',
-        href: '',
-        icon_name: 'Settings',
-        icon: 'material-symbols-outlined menu-icon',
-
-        children: [
-            {
-                title: 'System',
-                href: '/admin/settings/system',
-            },
-
-            {
-                title: 'SMTP Settings',
-                href: '/admin/settings/smtp',
-            },
-            {
-                title: 'Stripe',
-                href: '/admin/settings/stripe',
-            },
-
-            // {
-            //     title: 'Preferences',
-            //     href: '/settings/preferences',
-            // },
-
-            // {
-            //     title: 'Preferences',
-            //     href: '/settings/preferences',
-            // },
-
-            // {
-            //     title: 'Notifications',
-            //     href: '/settings/notifications',
-            // },
-        ],
-    },
 ];
 
 export default function MainSidebar() {
     const page = usePage();
+    const { setting } = page.props as any;
+
+    const theme = document.body.getAttribute('data-theme');
 
     const [openMenu, setOpenMenu] = useState<string | null>(
         null
     );
+    const { resolvedAppearance } = useAppearance();
+
+    const logo =
+        resolvedAppearance === 'dark'
+            ? setting?.dark_logo
+            : setting?.light_logo;
 
     const toggleSidebar = () => {
         const current = document.body.getAttribute('sidebar-data-theme');
@@ -109,18 +138,24 @@ export default function MainSidebar() {
     return (
         <div className="sidebar-area" id="sidebar-area">
             <div className="logo position-relative d-flex align-items-center justify-content-between">
+
                 <Link
                     className="d-block text-decoration-none position-relative"
                     href={home()}
                 >
-                    <img
-                        alt="logo-icon"
-                        src="/backend/assets/images/seller1.png"
-                    />
+                     <img
+                src={
+                    logo
+                        ? `/${logo}`
+                        : '/backend/assets/images/seller1.png'
+                }
+                alt="Logo"
+                style={{
+                    maxHeight: '50px',
+                    width: 'auto',
+                }}
+            />
 
-                    <span className="logo-text text-secondary fw-semibold">
-                        NAME
-                    </span>
                 </Link>
 
                 {/* sidebar collaps button  */}

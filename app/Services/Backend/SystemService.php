@@ -104,7 +104,7 @@ class SystemService
                 );
             }
 
-            $validated['light_logo'] =
+            $validated['light_logo'] = 'storage/' .
                 $request
                 ->file('light_logo')
                 ->store(
@@ -133,7 +133,7 @@ class SystemService
                 );
             }
 
-            $validated['dark_logo'] =
+            $validated['dark_logo'] = 'storage/' .
                 $request
                 ->file('dark_logo')
                 ->store(
@@ -162,7 +162,7 @@ class SystemService
                 );
             }
 
-            $validated['favicon'] =
+            $validated['favicon'] = 'storage/' .
                 $request
                 ->file('favicon')
                 ->store(

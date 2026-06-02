@@ -4,11 +4,12 @@
 use App\Http\Controllers\Web\Backend\DashboardController;
 use App\Http\Controllers\Web\Backend\DynamicPageController;
 use App\Http\Controllers\Web\Backend\FaqController;
+use App\Http\Controllers\Web\Backend\LogController;
 use App\Http\Controllers\Web\Backend\ProfileController;
+use App\Http\Controllers\Web\Backend\QueueController;
 use App\Http\Controllers\Web\Backend\SystemSettingsController;
 use App\Http\Controllers\Web\Backend\UserController;
 use Illuminate\Support\Facades\Route;
-
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
 
@@ -22,6 +23,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::get('/user/show/{id}', [UserController::class, 'show'])->name('admin.users.show');
     Route::put('/users/{id}', [UserController::class, 'update'])->name('admin.users.update');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+    Route::get('users/{user}/sessions', [UserController::class, 'sessions'])->name('admin.users.sessions');
 
 
     // System setting here 
@@ -37,6 +39,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
 
     //profile routes and controller
     Route::get('/profile', [ProfileController::class, 'index'])->name('admin.profile.index');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('admin.profile.update');
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('admin.profile.password.update');
 
     //Dynamic Pages routes and controller
     Route::get('/page/{slug}', [DynamicPageController::class, 'dynamicPage'])->name('admin.page.index');
@@ -48,6 +52,14 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::post('/faq/store', [FaqController::class, 'store'])->name('admin.faq.store');
     Route::get('/faq/edit/{id}', [FaqController::class, 'edit'])->name('admin.faq.edit');
     Route::post('/faq/update/{id}', [FaqController::class, 'update'])->name('admin.faq.update');
+    Route::delete('/faq/delete/{id}', [FaqController::class, 'destroy'])->name('admin.faq.delete');
 
-    
+    //Logs controller
+    Route::get('/logs', [LogController::class, 'index'])->name('admin.log.index');
+    Route::delete('/logs', [LogController::class, 'clear'])->name('admin.log.clear');
+
+    Route::get('/queues', [QueueController::class, 'index'])->name('admin.queues.index');
+    Route::get('/failed-jobs', [QueueController::class, 'failed'])->name('admin.failed-jobs.index');
+    Route::post('/failed-jobs/{id}/retry', [QueueController::class, 'retry'])->name('admin.failed-jobs.retry');
+    Route::delete('/failed-jobs/{id}', [QueueController::class, 'destroy'])->name('admin.failed-jobs.destroy');
 });

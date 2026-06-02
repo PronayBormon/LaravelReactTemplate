@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -35,18 +36,22 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $setting = Setting::first();
         return [
             ...parent::share($request),
             'name' => config('app.name'),
+            'setting' => $setting,
+            'light_logo' => $setting?->light_logo,
+            'dark_logo' => $setting?->dark_logo,
             'auth' => [
                 'user' => $request->user(),
             ],
             'flash' => [
-                'success' => fn () => $request->session()->get('success'),
-                'error' => fn () => $request->session()->get('error'),
-                'warning' => fn () => $request->session()->get('warning'),
-                'info' => fn () => $request->session()->get('info'),
-                'toast' => fn () => $request->session()->get('toast'),
+                'success' => fn() => $request->session()->get('success'),
+                'error' => fn() => $request->session()->get('error'),
+                'warning' => fn() => $request->session()->get('warning'),
+                'info' => fn() => $request->session()->get('info'),
+                'toast' => fn() => $request->session()->get('toast'),
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];

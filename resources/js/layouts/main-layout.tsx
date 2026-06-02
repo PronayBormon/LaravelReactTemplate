@@ -1,4 +1,6 @@
 import React from "react";
+import { usePage } from '@inertiajs/react';
+
 import MainNavbar from "@/components/main-component/main-navbar";
 import MainSidebar from "@/components/main-component/main-sidebar";
 import { useBackendScripts } from "@/hooks/use-backend-scripts";
@@ -17,6 +19,9 @@ export default function MainLayout({
     children,
 }: Props) {
     useBackendScripts();
+
+    const page = usePage();
+    const { setting } = page.props as any;
 
     return (<>
         <Toaster
@@ -42,7 +47,7 @@ export default function MainLayout({
                 {/* <!-- Start Footer Area --> */}
                 <footer className="footer-area bg-white text-center rounded-10 rounded-bottom-0 mt-3">
                     <p className="fs-16 text-body">
-                        ©Copyright all right reserve
+                        © {setting.copyright_text ?? "Copyright all right reserve"}
                     </p>
                 </footer>
                 {/* <!-- End Footer Area --> */}

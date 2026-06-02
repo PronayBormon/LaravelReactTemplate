@@ -1,6 +1,8 @@
 import MainLayout from "@/layouts/main-layout";
 import { Head, router, useForm, Link } from "@inertiajs/react";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+
 
 interface User {
     id: number;
@@ -88,10 +90,32 @@ export default function Index({ users, filters }: Props) {
 
     const deleteUser = (id: number) => {
 
-        if (confirm('Delete this user?')) {
+        Swal.fire({
+            title: "Clear Logs?",
+            text: "This action cannot be undone!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#dc3545",
+            cancelButtonColor: "#6c757d",
+            confirmButtonText: "Yes, clear logs",
+            cancelButtonText: "Cancel",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                router.delete(`/admin/users/${id}`, {
+                    onSuccess: () => {
+                        // Swal.fire({
+                        //     icon: "success",
+                        //     title: "Success",
+                        //     text: "Logs cleared successfully.",
+                        //     timer: 1500,
+                        //     showConfirmButton: false,
+                        // });
+                    },
 
-            router.delete(`/admin/users/${id}`);
-        }
+                });
+
+            }
+        });
     };
 
     const applyFilters = () => {
@@ -152,7 +176,6 @@ export default function Index({ users, filters }: Props) {
                 <div className="row">
 
                     <div className="col-md-12">
-
                         <div className="card bg-white rounded-10 border border-white mb-4">
 
                             <div className="d-flex justify-content-between align-items-center flex-wrap gap-3 p-20">
@@ -202,7 +225,7 @@ export default function Index({ users, filters }: Props) {
                                     />
 
                                     <button
-                                        className="btn btn-primary"
+                                        className="btn btn-primary text-white"
                                         onClick={applyFilters}
                                     >
 

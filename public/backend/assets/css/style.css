@@ -19044,6 +19044,7 @@ Dark Mode SCSS
 }
 [data-theme=dark] .menu-vertical .menu-sub .menu-item .menu-link.active {
   color: #fff;
+  background: #000;
 }
 [data-theme=dark] .menu-vertical .menu-sub .menu-item .menu-link:hover::before {
   background-color: #0f79f3;

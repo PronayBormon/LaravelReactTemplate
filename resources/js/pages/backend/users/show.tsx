@@ -14,13 +14,16 @@ export default function Show({
         user.avatar &&
             user.avatar !== "null"
             ? `/${user.avatar}`
-            : "/backend/assets/images/placeholder.png";
+            : "/backend/assets/images/placholder.png";
 
     return (
         <div className="row">
 
             {/* Profile Card */}
             <div className="col-lg-4">
+
+
+
 
                 <div className="card bg-white p-20 rounded-10 border border-white mb-4">
 
@@ -33,8 +36,8 @@ export default function Show({
 
                         <img
                             src={avatar}
-                            alt={user.name}
-                            className="rounded-circle mb-3"
+                            alt={user.name }
+                            className="rounded-circle mb-3 border border-1 d-flex justify-content-center align-items-center"
                             style={{
                                 width: "120px",
                                 height: "120px",
@@ -72,12 +75,18 @@ export default function Show({
                         </h3>
 
                         <div className="d-flex gap-2">
+                            <Link
+                                href={`/admin/users/` + user.id + `/sessions`}
+                                className="btn btn-info fs-16 fw-normal text-white"
+                            >
+                                Sessions
+                            </Link>
 
                             <Link
                                 href={`/admin/user/edit/${user.id}`}
                                 className="btn btn-primary text-white"
                             >
-                                Edit User
+                                Edit
                             </Link>
 
                             <Link

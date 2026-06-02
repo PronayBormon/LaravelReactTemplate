@@ -1,270 +1,414 @@
-import DashboardChart from "@/pages/widget/chart";
+import ImageUpload from "@/pages/widget/image-upload";
+import { Head, useForm } from "@inertiajs/react";
+import { useState } from "react";
 
 interface Props {
-    user: any;
+    user: {
+        id: number;
+        name: string;
+        email: string;
+        avatar?: string | null;
+        role?: string | null;
+        created_at?: string;
+    };
 }
 
+export default function Index({ user }: Props) {
+    const profileForm = useForm({
+        name: user.name || "",
+        email: user.email || "",
+        avatar: null as File | null,
+    });
 
-export default function index({ user }: Props) {
+    const passwordForm = useForm({
+        current_password: "",
+        password: "",
+        password_confirmation: "",
+    });
+
+    const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+    const avatar =
+        user.avatar && user.avatar !== "null"
+            ? `/${user.avatar}`
+            : "/backend/assets/images/placholder.png";
+
+    const submitProfile = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        profileForm.transform((data) => ({
+            ...data,
+            _method: "put",
+        }));
+
+        profileForm.post("/admin/profile", {
+            forceFormData: true,
+            preserveScroll: true,
+        });
+    };
+
+    const submitPassword = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        passwordForm.put("/admin/profile/password", {
+            preserveScroll: true,
+            onSuccess: () => passwordForm.reset(),
+        });
+    };
+
     return (
-
         <>
+            <Head title="Edit Profile" />
+
             <div className="row">
-                <div className="col-12">
-                    <div className="card bg-white border border-white rounded-10 p-20 mb-4">
-                        <h3 className="mb-20">
-                            Profile Intro
-                        </h3>
-                        <div className="d-flex align-items-center mb-3">
-                            <div className="flex-shrink-0">
-                                <img alt="profile" className="rounded-circle" src={user.avatar ? `/${user.avatar}` : "/backend/assets/images/placholder.png"} style={{ width: "75px" }} />
-                            </div>
-                            <div className="flex-grow-1 ms-3">
-                                <h3 className="fs-18" style={{ marginBottom: "2px" }}>
-                                    {user.name}
-                                </h3>
-                                <span className="fs-16">
-                                    <a className="__cf_email__" data-cfemail="660b0712030926000f0a074805090b" href={`mailto:${user.email}`}>
-                                        {user.email}
-                                    </a>
-                                </span>
-                            </div>
+                <div className="col-lg-4">
+                    <div className="card bg-white p-20 rounded-10 border border-white mb-4">
+                        <div className="text-center d-flex flex-column align-items-center">
+                            <img
+                                src={avatar}
+                                alt={user.name}
+                                className="rounded-circle mb-3 border border-1"
+                                style={{
+                                    width: "120px",
+                                    height: "120px",
+                                    objectFit: "cover",
+                                }}
+                            />
+
+                            <h3 className="mb-1">{user.name}</h3>
+
+                            <p className="text-muted mb-3">{user.email}</p>
+
+                            <span className="badge bg-primary text-capitalize fs-14">
+                                {user.role ?? "user"}
+                            </span>
                         </div>
-                        {/* <h4 className="fw-medium fs-16 mb-2">
-                            About Me
-                        </h4> */}
-                        {/* <p className="lh-1-8 fs-16">
-                            Molestie tincidunt ut consequat a urna tortor. Vitae velit ac nisl velit mauris placerat nisi placerat. Pellentesque viverra lorem malesuada nunc tristique sapien. Imperdiet sit hendrerit tincidunt bibendum donec adipiscing.
-                        </p>
-                        <h3 className="mb-2 pb-1">
-                            Social Profile
-                        </h3> */}
-                        {/* <ul className="p-0 mb-0 list-unstyled d-flex gap-2" >
-                            <li>
-                                <a className="d-inline-block rounded-circle text-decoration-none text-center text-white transition-y fs-16" href="https://www.facebook.com/" style={{ width: "24px", height: "24px", lineHeight: "24px", backgroundColor: "#3a559f" }} target="_blank">
-                                    <i className="ri-facebook-fill">
-                                    </i>
-                                </a>
-                            </li>
-                        </ul> */}
                     </div>
-                </div>
-                <div className="col-12">
-                {/* <div className="col-md-6 col-xxxl-6 col-6"> */}
-                    <div className="card bg-white border border-white rounded-10 p-20 mb-4">
-                        <h3 className="mb-20">
-                            Profile Information
-                        </h3>
+
+                    <div className="card bg-white p-20 rounded-10 border border-white mb-4">
+                        <h3 className="mb-20">Account Details</h3>
+
                         <ul className="p-0 mb-0 list-unstyled last-child-none">
                             <li className="mb-10 fs-16">
-                                User ID:
+                                User ID:{" "}
                                 <span className="text-secondary">
-                                    {user.id}
+                                    #{user.id}
                                 </span>
                             </li>
+
                             <li className="mb-10 fs-16">
-                                Full Name:
-                                <span className="text-secondary">
-                                    {user.name}
+                                Role:{" "}
+                                <span className="text-secondary text-capitalize">
+                                    {user.role ?? "user"}
                                 </span>
                             </li>
-                            <li className="mb-10 fs-16">
-                                Email:
-                                <span className="text-secondary">
-                                    <a className="__cf_email__" data-cfemail="15787c767d70747955737c79743b767a78" href={`mailto:${user.email}`}>
-                                       {user.email}
-                                    </a>
-                                </span>
-                            </li>
-                            <li className="mb-10 fs-16">
-                                Role:
-                                <span className="text-secondary">
-                                    {user.role}
-                                </span>
-                            </li>
-                            <li className="mb-10 fs-16">
-                                Join Date:
-                                <span className="text-secondary">
-                                    {user.created_at}
-                                </span>
-                            </li>
+
+                            {user.created_at && (
+                                <li className="mb-10 fs-16">
+                                    Join Date:{" "}
+                                    <span className="text-secondary">
+                                        {new Date(
+                                            user.created_at
+                                        ).toLocaleDateString("en-US", {
+                                            year: "numeric",
+                                            month: "long",
+                                            day: "numeric",
+                                        })}
+                                    </span>
+                                </li>
+                            )}
                         </ul>
                     </div>
                 </div>
-                {/* <div className="col-md-6 col-xxxl-6 col-6">
-                    <div className="card bg-white border border-white rounded-10 p-20 mb-4">
-                        <h3 className="mb-20">
-                            Additional Information
-                        </h3>
-                        <ul className="p-0 mb-0 list-unstyled last-child-none">
-                            <li className="mb-10 fs-16">
-                                Phone:
-                                <span className="text-secondary">
-                                    +1 444 266 5599
-                                </span>
-                            </li>
-                            <li className="mb-10 fs-16">
-                                Address:
-                                <span className="text-secondary">
-                                    84 S. Arrowhead Court Branford
-                                </span>
-                            </li>
-                            <li className="mb-10 fs-16">
-                                Orders:
-                                <span className="text-secondary">
-                                    696
-                                </span>
-                            </li>
-                            <li className="mb-10 fs-16">
-                                Product:
-                                <span className="text-secondary">
-                                    9240
-                                </span>
-                            </li>
-                            <li className="mb-10 fs-16">
-                                Event:
-                                <span className="text-secondary">
-                                    5
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-                </div> */}
-            </div>
-            {/* <div className="col-md-6 col-xxxl-6 col-6">
-                    <div className="row">
-                        <div className="col-12">
+
+                <div className="col-lg-8">
+                    <div className="card bg-white p-20 rounded-10 border border-white mb-4">
+                        <h3 className="mb-20">Edit Profile</h3>
+
+                        <form onSubmit={submitProfile}>
                             <div className="row">
-                                <div className="col-md-4">
-                                    <div className="card bg-white p-20 rounded-10 border border-white mb-4">
-                                        <h3 className="fw-medium mb-10">
-                                            Total Projects
-                                        </h3>
-                                        <h2 className="lh-1 fs-26 mb-20 fw-medium">
-                                            22.5K+
-                                        </h2>
-                                        <div className="text-center bg-light rounded-circle mx-auto" style={{ width: "100px", height: "100px", lineHeight: "100px", marginBottom: "32px" }}>
-                                            <img alt="active-learning" src="assets/images/active-learning.svg" />
+                                <div className="col-lg-6">
+                                    <div className="mb-20">
+                                        <label className="label fs-16 mb-2">
+                                            Full Name
+                                        </label>
+
+                                        <div className="form-floating">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Full name"
+                                                value={profileForm.data.name}
+                                                onChange={(e) =>
+                                                    profileForm.setData(
+                                                        "name",
+                                                        e.target.value
+                                                    )
+                                                }
+                                            />
+
+                                            <label>Full name</label>
                                         </div>
-                                        <div className="d-flex align-items-center justify-content-between">
-                                            <span>
-                                                This Month
-                                            </span>
-                                            <span className="d-flex align-content-center gap-1 bg-success bg-opacity-10 border border-success" style={{ padding: "3px 5px" }}>
-                                                <i className="material-symbols-outlined fs-14 text-success">
-                                                    trending_up
-                                                </i>
-                                                <span className="lh-1 fs-14 text-success">
-                                                    2.15%
-                                                </span>
-                                            </span>
-                                        </div>
+
+                                        {profileForm.errors.name && (
+                                            <div className="text-danger mt-1">
+                                                {profileForm.errors.name}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
-                                <div className="col-md-4">
-                                    <div className="card bg-white p-20 rounded-10 border border-white mb-4">
-                                        <h3 className="fw-medium mb-10">
-                                            Total Orders
-                                        </h3>
-                                        <h2 className="lh-1 fs-26 mb-20 fw-medium">
-                                            21.2K
-                                        </h2>
-                                        <div className="text-center bg-light rounded-circle mx-auto" style={{ width: "100px", height: "100px", lineHeight: "100px", marginBottom: "32px" }}>
-                                            <img alt="join" src="assets/images/join.svg" />
+
+                                <div className="col-lg-6">
+                                    <div className="mb-20">
+                                        <label className="label fs-16 mb-2">
+                                            Email Address
+                                        </label>
+
+                                        <div className="form-floating">
+                                            <input
+                                                type="email"
+                                                className="form-control"
+                                                placeholder="Email address"
+                                                value={profileForm.data.email}
+                                                onChange={(e) =>
+                                                    profileForm.setData(
+                                                        "email",
+                                                        e.target.value
+                                                    )
+                                                }
+                                            />
+
+                                            <label>Email address</label>
                                         </div>
-                                        <div className="d-flex align-items-center justify-content-between">
-                                            <span>
-                                                This Week
-                                            </span>
-                                            <span className="d-flex align-content-center gap-1 bg-danger bg-opacity-10 border border-danger" style={{ padding: "3px 5px" }}>
-                                                <i className="material-symbols-outlined fs-14 text-danger">
-                                                    trending_down
-                                                </i>
-                                                <span className="lh-1 fs-14 text-danger">
-                                                    1.25%
-                                                </span>
-                                            </span>
-                                        </div>
+
+                                        {profileForm.errors.email && (
+                                            <div className="text-danger mt-1">
+                                                {profileForm.errors.email}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
-                                <div className="col-md-4">
-                                    <div className="card bg-white p-20 rounded-10 border border-white mb-4">
-                                        <h3 className="fw-medium mb-10">
-                                            Total Revenue
-                                        </h3>
-                                        <h2 className="lh-1 fs-26 mb-20 fw-medium">
-                                            $34.5M
-                                        </h2>
-                                        <div className="text-center bg-light rounded-circle mx-auto" style={{ width: "100px", height: "100px", lineHeight: "100px", marginBottom: "32px" }}>
-                                            <img alt="school" src="assets/images/school.svg" />
+
+                                <div className="col-lg-12">
+                                    <ImageUpload
+                                        label="Avatar"
+                                        file={profileForm.data.avatar}
+                                        imageUrl={user.avatar ? avatar : ""}
+                                        onChange={(file) =>
+                                            profileForm.setData("avatar", file)
+                                        }
+                                    />
+
+                                    {profileForm.errors.avatar && (
+                                        <div className="text-danger mt-1">
+                                            {profileForm.errors.avatar}
                                         </div>
-                                        <div className="d-flex align-items-center justify-content-between">
-                                            <span>
-                                                This Week
-                                            </span>
-                                            <span className="d-flex align-content-center gap-1 bg-success bg-opacity-10 border border-success" style={{ padding: "3px 5px" }}>
-                                                <i className="material-symbols-outlined fs-14 text-success">
-                                                    trending_up
-                                                </i>
-                                                <span className="lh-1 fs-14 text-success">
-                                                    75%
-                                                </span>
-                                            </span>
-                                        </div>
-                                    </div>
+                                    )}
                                 </div>
-                            </div>
-                        </div>
-                        <div className="col-12">
-                            <div className="rounded-10 p-20 pb-0 gradient-bg position-relative welcome-card mb-4">
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <span className="fs-16 text-white d-block" style={{ marginTop: "-11px" }}>
-                                            December 28, 2025
-                                        </span>
-                                        <h3 className="fs-26 fw-medium text-white" style={{ marginTop: "7px", marginBottom: "10px" }}>
-                                            Welcome To StarCode Kh
-                                        </h3>
-                                        <p className="fs-15 text-white">
-                                            Learning Management System Dashboard.
-                                        </p>
-                                        <p className="fs-16 fw-medium text-white mb-0">
-                                            Daily Performance
-                                        </p>
-                                        <DashboardChart
-                                            type="line"
-                                            height="225"
-                                            categories={[
-                                                '2026',
-                                                '2025',
-                                                '2024',
-                                                '2023',
-                                                '2022',
-                                                '2021',
-                                                '2020',
-                                            ]}
-                                            series={[
-                                                {
-                                                    name: 'Sales',
-                                                    data: [120, 200, 150, 300, 280, 280, 400],
-                                                },
-                                                {
-                                                    name: 'Revenue',
-                                                    data: [350, 120, 200, 180, 150, 130, 190],
-                                                },
-                                            ]}
-                                        />
-                                    </div>
-                                    <div className="col-md-6">
-                                        <div className="text-center text-md-end">
-                                            <img alt="welcome" src="assets/images/welcome.png" />
-                                        </div>
-                                    </div>
+
+                                <div className="col-lg-12">
+                                    <button
+                                        type="submit"
+                                        className="btn btn-primary fw-normal text-white"
+                                        disabled={profileForm.processing}
+                                    >
+                                        Update Profile
+                                    </button>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
-                </div> */}
+
+                    <div className="card bg-white p-20 rounded-10 border border-white mb-4">
+                        <h3 className="mb-20">Update Password</h3>
+
+                        <form onSubmit={submitPassword}>
+                            <div className="row">
+                                <div className="col-lg-12">
+                                    <div className="mb-20">
+                                        <label className="label fs-16 mb-2">
+                                            Current Password
+                                        </label>
+
+                                        <div className="position-relative">
+                                            <input
+                                                type={
+                                                    showCurrentPassword
+                                                        ? "text"
+                                                        : "password"
+                                                }
+                                                className="form-control pe-5"
+                                                placeholder="Current password"
+                                                value={
+                                                    passwordForm.data
+                                                        .current_password
+                                                }
+                                                onChange={(e) =>
+                                                    passwordForm.setData(
+                                                        "current_password",
+                                                        e.target.value
+                                                    )
+                                                }
+                                            />
+
+                                            <button
+                                                type="button"
+                                                className="border-0 bg-transparent position-absolute top-50 end-0 translate-middle-y me-3"
+                                                onClick={() =>
+                                                    setShowCurrentPassword(
+                                                        !showCurrentPassword
+                                                    )
+                                                }
+                                            >
+                                                <i
+                                                    className={
+                                                        showCurrentPassword
+                                                            ? "ri-eye-line"
+                                                            : "ri-eye-off-line"
+                                                    }
+                                                ></i>
+                                            </button>
+                                        </div>
+
+                                        {passwordForm.errors
+                                            .current_password && (
+                                            <div className="text-danger mt-1">
+                                                {
+                                                    passwordForm.errors
+                                                        .current_password
+                                                }
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+
+                                <div className="col-lg-6">
+                                    <div className="mb-20">
+                                        <label className="label fs-16 mb-2">
+                                            New Password
+                                        </label>
+
+                                        <div className="position-relative">
+                                            <input
+                                                type={
+                                                    showPassword
+                                                        ? "text"
+                                                        : "password"
+                                                }
+                                                className="form-control pe-5"
+                                                placeholder="New password"
+                                                value={
+                                                    passwordForm.data.password
+                                                }
+                                                onChange={(e) =>
+                                                    passwordForm.setData(
+                                                        "password",
+                                                        e.target.value
+                                                    )
+                                                }
+                                            />
+
+                                            <button
+                                                type="button"
+                                                className="border-0 bg-transparent position-absolute top-50 end-0 translate-middle-y me-3"
+                                                onClick={() =>
+                                                    setShowPassword(
+                                                        !showPassword
+                                                    )
+                                                }
+                                            >
+                                                <i
+                                                    className={
+                                                        showPassword
+                                                            ? "ri-eye-line"
+                                                            : "ri-eye-off-line"
+                                                    }
+                                                ></i>
+                                            </button>
+                                        </div>
+
+                                        {passwordForm.errors.password && (
+                                            <div className="text-danger mt-1">
+                                                {passwordForm.errors.password}
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+
+                                <div className="col-lg-6">
+                                    <div className="mb-20">
+                                        <label className="label fs-16 mb-2">
+                                            Confirm Password
+                                        </label>
+
+                                        <div className="position-relative">
+                                            <input
+                                                type={
+                                                    showConfirmPassword
+                                                        ? "text"
+                                                        : "password"
+                                                }
+                                                className="form-control pe-5"
+                                                placeholder="Confirm password"
+                                                value={
+                                                    passwordForm.data
+                                                        .password_confirmation
+                                                }
+                                                onChange={(e) =>
+                                                    passwordForm.setData(
+                                                        "password_confirmation",
+                                                        e.target.value
+                                                    )
+                                                }
+                                            />
+
+                                            <button
+                                                type="button"
+                                                className="border-0 bg-transparent position-absolute top-50 end-0 translate-middle-y me-3"
+                                                onClick={() =>
+                                                    setShowConfirmPassword(
+                                                        !showConfirmPassword
+                                                    )
+                                                }
+                                            >
+                                                <i
+                                                    className={
+                                                        showConfirmPassword
+                                                            ? "ri-eye-line"
+                                                            : "ri-eye-off-line"
+                                                    }
+                                                ></i>
+                                            </button>
+                                        </div>
+
+                                        {passwordForm.errors
+                                            .password_confirmation && (
+                                            <div className="text-danger mt-1">
+                                                {
+                                                    passwordForm.errors
+                                                        .password_confirmation
+                                                }
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+
+                                <div className="col-lg-12">
+                                    <button
+                                        type="submit"
+                                        className="btn btn-primary fw-normal text-white"
+                                        disabled={passwordForm.processing}
+                                    >
+                                        Update Password
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </>
-    )
+    );
 }

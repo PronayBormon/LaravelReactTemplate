@@ -73,7 +73,7 @@ export default function System({
         router.post('/admin/settings/system/update', data, {
             onSuccess: () => {
                 // reset();
-                console.log(data);
+                // console.log(data);
             },
         },);
 
@@ -324,7 +324,7 @@ export default function System({
                                 file={data.light_logo}
                                 imageUrl={
                                     setting?.light_logo
-                                        ? `/storage/${setting.light_logo}`
+                                        ? `/${setting.light_logo}`
                                         : ''
                                 }
                                 onChange={(file) =>
@@ -340,7 +340,7 @@ export default function System({
                                 file={data.dark_logo}
                                 imageUrl={
                                     setting?.dark_logo
-                                        ? `/storage/${setting.dark_logo}`
+                                        ? `/${setting.dark_logo}`
                                         : ''
                                 }
                                 onChange={(file) =>
@@ -358,7 +358,7 @@ export default function System({
                                 file={data.favicon}
                                 imageUrl={
                                     setting?.favicon
-                                        ? `/storage/${setting.favicon}`
+                                        ? `/${setting.favicon}`
                                         : ''
                                 }
                                 onChange={(file) =>

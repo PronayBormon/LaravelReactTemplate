@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Services\Backend\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
+use Jenssegers\Agent\Agent;
 
 class UserController extends Controller
 {
@@ -146,5 +148,32 @@ class UserController extends Controller
         $user->delete();
 
         return back()->with('success', 'User deleted successfully');
+    }
+
+    public function sessions(User $user)
+    {
+        $sessions = DB::table('sessions')
+            ->where('user_id', $user->id)
+            ->orderByDesc('last_activity')
+            ->get()
+            ->map(function ($session) {
+
+                $agent = new Agent();
+                $agent->setUserAgent($session->user_agent);
+
+                return [
+                    'id' => $session->id,
+                    'ip_address' => $session->ip_address,
+                    'browser' => $agent->browser(),
+                    'platform' => $agent->platform(),
+                    'device' => $agent->device() ?: 'Desktop',
+                    'last_activity' => $session->last_activity,
+                ];
+            });
+
+        return Inertia::render('backend/users/sessions', [
+            'user' => $user,
+            'sessions' => $sessions,
+        ]);
     }
 }
