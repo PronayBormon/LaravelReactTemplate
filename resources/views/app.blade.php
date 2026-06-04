@@ -1,3 +1,6 @@
+@php
+$setting = \App\Models\Setting::first();
+@endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @class(['dark'=> ($appearance ?? 'system') == 'dark'])>
 
@@ -31,9 +34,9 @@
         }
     </style>
 
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href={{asset($setting?->favicon)}} sizes="any">
+    <link rel="icon" href={{asset($setting?->favicon)}} type="image/svg+xml">
+    <link rel="apple-touch-icon" href={{asset($setting?->favicon)}}>
 
     @fonts
 
