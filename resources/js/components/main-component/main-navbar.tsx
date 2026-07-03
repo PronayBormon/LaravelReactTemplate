@@ -1,7 +1,12 @@
 import { useAppearance } from '@/hooks/use-appearance';
+import { logout } from '@/routes';
+import { Link, usePage } from '@inertiajs/react';
+
 
 export default function MainNavbar() {
     const { resolvedAppearance, updateAppearance } = useAppearance();
+    const { setting } = usePage().props as any;
+    const { auth } = usePage().props;
 
     const toggleTheme = () => {
         updateAppearance(resolvedAppearance === 'dark' ? 'light' : 'dark');
@@ -303,7 +308,11 @@ export default function MainNavbar() {
                                                 <img
                                                     alt="admin"
                                                     className="rounded-circle admin-img-width-for-mobile"
-                                                    src="/backend/assets/images/placholder.png"
+                                                    src={
+                                                        auth?.user?.avatar
+                                                            ? `/${auth.user.avatar}`
+                                                            : '/backend/assets/images/placholder.png'
+                                                    }
                                                     style={{
                                                         width: "40px",
                                                         height: "40px",
@@ -326,24 +335,62 @@ export default function MainNavbar() {
                                                     <img
                                                         alt="admin"
                                                         className="rounded-circle"
-                                                        src="/backend/assets/images/placholder.png"
+                                                        src={
+                                                            auth?.user?.avatar
+                                                                ? `/${auth.user.avatar}`
+                                                                : '/backend/assets/images/placholder.png'
+                                                        }
                                                         style={{
                                                             width: "40px",
                                                             height: "40px",
                                                         }}
                                                     />
                                                 </div>
-
                                                 <div className="flex-grow-1 ms-10">
                                                     <h3 className="fw-medium fs-17 mb-0">
-                                                        Mr. admin user
+                                                        {[auth?.user?.first_name, auth?.user?.last_name]
+                                                            .filter(Boolean)
+                                                            .join(' ') || 'User'}
                                                     </h3>
 
                                                     <span className="fs-15 fw-medium">
-                                                        Admin
+                                                        {auth?.user?.role.toUpperCase() || 'Admin'}
                                                     </span>
                                                 </div>
                                             </div>
+
+                                            <ul className="admin-link mb-0 list-unstyled">
+                                                <li>
+                                                    <Link href={'/admin/profile'} className="dropdown-item admin-item-link d-flex align-items-center text-body" >
+                                                        <i className="material-symbols-outlined">
+                                                            person
+                                                        </i>
+                                                        <span className="ms-2">
+                                                            My Profile
+                                                        </span>
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link href={'/admin/settings/system'} className="dropdown-item admin-item-link d-flex align-items-center text-body" >
+                                                        <i className="material-symbols-outlined">
+                                                            settings
+                                                        </i>
+                                                        <span className="ms-2">
+                                                            Settings
+                                                        </span>
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link className="dropdown-item admin-item-link d-flex align-items-center text-body" href={logout()}>
+                                                        <i className="material-symbols-outlined">
+                                                            logout
+                                                        </i>
+                                                        <span className="ms-2">
+                                                            Logout
+                                                        </span>
+                                                    </Link>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </li>

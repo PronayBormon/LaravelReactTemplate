@@ -24,7 +24,8 @@ export default function Edit({
         post,
         errors,
     } = useForm({
-        name: user.name || "",
+        first_name: user.first_name || "",
+        last_name: user.last_name || "",
         email: user.email || "",
         password: "",
         password_confirmation: "",
@@ -85,26 +86,27 @@ export default function Edit({
                     >
                         <div className="row">
 
+
                             {/* Name */}
                             <div className="col-lg-6">
                                 <div className="mb-20">
                                     <label className="label fs-16 mb-2">
-                                        User Name
+                                        First Name
                                     </label>
 
                                     <div className="form-floating">
                                         <input
                                             type="text"
                                             className="form-control"
-                                            placeholder="User name"
+                                            placeholder="First name"
                                             value={
-                                                data.name
+                                                data.first_name
                                             }
                                             onChange={(
                                                 e
                                             ) =>
                                                 setData(
-                                                    "name",
+                                                    'first_name',
                                                     e
                                                         .target
                                                         .value
@@ -117,10 +119,52 @@ export default function Edit({
                                         </label>
                                     </div>
 
-                                    {errors.name && (
+                                    {errors.first_name && (
                                         <div className="text-danger mt-1">
                                             {
-                                                errors.name
+                                                errors.first_name
+                                            }
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Name */}
+                            <div className="col-lg-6">
+                                <div className="mb-20">
+                                    <label className="label fs-16 mb-2">
+                                        Last Name
+                                    </label>
+
+                                    <div className="form-floating">
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Last name"
+                                            value={
+                                                data.last_name
+                                            }
+                                            onChange={(
+                                                e
+                                            ) =>
+                                                setData(
+                                                    'last_name',
+                                                    e
+                                                        .target
+                                                        .value
+                                                )
+                                            }
+                                        />
+
+                                        <label>
+                                            Last name
+                                        </label>
+                                    </div>
+
+                                    {errors.first_name && (
+                                        <div className="text-danger mt-1">
+                                            {
+                                                errors.last_name
                                             }
                                         </div>
                                     )}

@@ -6,7 +6,8 @@ import Swal from "sweetalert2";
 
 interface User {
     id: number;
-    name: string;
+    first_name: string;
+    last_name: string;
     email: string;
     avatar: string;
     role: string;
@@ -48,7 +49,8 @@ export default function Index({ users, filters }: Props) {
     );
 
     const { data, setData, post, processing, reset } = useForm({
-        name: '',
+        first_name: '',
+        last_name: '',
         email: '',
         password: '',
         avatar: '',
@@ -82,7 +84,8 @@ export default function Index({ users, filters }: Props) {
         setEditId(user.id);
 
         setData({
-            name: user.name,
+            first_name: user.first_name,
+            last_name: user.last_name,
             email: user.email,
             password: '',
         });
@@ -303,7 +306,7 @@ export default function Index({ users, filters }: Props) {
                                                                 </div>
                                                                 <div className="flex-grow-1 ms-12">
                                                                     <h4 className="fw-medium fs-16 mb-0">
-                                                                        {user.name}
+                                                                        {user.first_name} {user.last_name}
                                                                     </h4>
                                                                 </div>
                                                             </div>
@@ -313,10 +316,17 @@ export default function Index({ users, filters }: Props) {
                                                             {user.email}
                                                         </td>
                                                         <td>
-                                                            <span className="badge bg-secondary">
+                                                            <span
+                                                                className={
+                                                                    user.role === 'admin' || user.role === 'super_admin'
+                                                                        ? 'badge bg-primary'
+                                                                        : 'badge bg-secondary'
+                                                                }
+                                                            >
                                                                 {user.role
-                                                                    ? user.role.charAt(0).toUpperCase() +
-                                                                    user.role.slice(1)
+                                                                    ? user.role
+                                                                        .replace('_', ' ')
+                                                                        .replace(/\b\w/g, (char) => char.toUpperCase())
                                                                     : 'User'}
                                                             </span>
                                                         </td>
@@ -354,7 +364,7 @@ export default function Index({ users, filters }: Props) {
                                                                     className="bg-transparent p-0 border-0 hover-text-success"
                                                                     href={`/admin/user/edit/${user.id}`}
                                                                 >
-                                                                    <i className="material-symbols-outlined fs-16 fw-normal text-body">
+                                                                    <i className="material-symbols-outlined fs-16 fw-normal text-primary">
                                                                         edit
                                                                     </i>
                                                                 </Link>
@@ -366,7 +376,7 @@ export default function Index({ users, filters }: Props) {
                                                                     className="bg-transparent p-0 border-0 hover-text-danger"
                                                                 >
 
-                                                                    <i className="material-symbols-outlined fs-16 fw-normal text-body">
+                                                                    <i className="material-symbols-outlined fs-16 fw-normal text-danger">
                                                                         delete
                                                                     </i>
 

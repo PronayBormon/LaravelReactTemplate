@@ -25,15 +25,15 @@ class AdminMiddleware
                 if ($user && $request->bearerToken()) {
                     $request->user()->currentAccessToken()->delete();
                 }
-                return response()->json(['message' => 'Unauthorized'], 403);
+                // return response()->json(['message' => 'Unauthorized'], 403);
             } else {
                 // Web: log out
 
                 // Web / Session guard
-                if (Auth::guard('web')->check()) {
-                    Auth::guard('web')->logout();
-                }
-                return redirect()->route('login')->with('t-error', 'Unauthorized access');
+                // if (Auth::guard('web')->check()) {
+                //     Auth::guard('web')->logout();
+                // }
+                // return redirect()->route('login')->with('t-error', 'Unauthorized access');
             }
         }
 

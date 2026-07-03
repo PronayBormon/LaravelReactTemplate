@@ -22,8 +22,8 @@ export default function AppLogo() {
             (
                 <>
                     <img
-                        src={'/' +
-                            setting?.dark_logo
+                        src={setting?.dark_logo ? '/' +
+                            setting?.dark_logo : '/backend/assets/images/logo-placeholder.png'
                         }
                         alt="Logo"
                         style={{
@@ -36,8 +36,8 @@ export default function AppLogo() {
             ) : (
                 <>
                     <img
-                        src={'/' +
-                            setting?.light_logo
+                        src={setting?.light_logo ? '/' +
+                            setting?.light_logo : '/backend/assets/images/logo-placeholder.png'
                         }
                         alt="Logo"
                         style={{

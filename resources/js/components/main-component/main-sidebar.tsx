@@ -102,12 +102,12 @@ const items: MenuItem[] = [
         ],
     },
 
-    {
-        title: 'Profile',
-        href: '/admin/profile',
-        icon_name: 'account_circle',
-        icon: 'material-symbols-outlined menu-icon',
-    },
+    // {
+    //     title: 'Profile',
+    //     href: '/admin/profile',
+    //     icon_name: 'account_circle',
+    //     icon: 'material-symbols-outlined menu-icon',
+    // },
 ];
 
 export default function MainSidebar() {

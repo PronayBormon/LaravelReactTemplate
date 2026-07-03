@@ -40,6 +40,7 @@ class HandleInertiaRequests extends Middleware
         return [
             ...parent::share($request),
             'name' => config('app.name'),
+            'site_settings' => $setting?->site_name,
             'setting' => $setting,
             'light_logo' => $setting?->light_logo,
             'dark_logo' => $setting?->dark_logo,
