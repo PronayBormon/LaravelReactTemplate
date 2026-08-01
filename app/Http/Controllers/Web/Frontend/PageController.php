@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Page;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -22,6 +23,12 @@ class PageController extends Controller
     public function termsAndConditions(): Response
     {
         return $this->renderPage(Page::termsAndConditions());
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->back();
     }
 
     private function renderPage(Page $page): Response
