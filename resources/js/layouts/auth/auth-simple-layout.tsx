@@ -10,14 +10,14 @@ export default function AuthSimpleLayout({
 }: AuthLayoutProps) {
     return (
         <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-6 md:p-10">
-            <div className="w-full max-w-md border-1 border rounded-2 p-4">
-                <div className="flex flex-col gap-8">
+            <div className="w-full custom-card max-w-md   border-0 rounded-5 p-4">
+                <div className="flex flex-col gap-8 mt-5">
                     <div className="flex flex-col items-center gap-4">
                         <Link
                             href={home()}
                             className="flex flex-col items-center gap-2 font-medium"
                         >
-                            <div className="mb-1 flex h-9  items-center justify-center rounded-md" style={{width: "60%"}}>
+                            <div className="mb-1 flex h-9  items-center justify-center rounded-md" style={{width: "50%", padding: "15px"}}>
                                 <AppLogoIcon />
                             </div>
                             <span className="sr-only">{title}</span>

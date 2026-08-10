@@ -37,6 +37,7 @@ export default function Login({ status, canResetPassword }: Props) {
                                 <Input
                                     id="email"
                                     type="email"
+                                    className=' rounded-5'
                                     name="email"
                                     required
                                     autoFocus
@@ -63,6 +64,7 @@ export default function Login({ status, canResetPassword }: Props) {
                                 <PasswordInput
                                     id="password"
                                     name="password"
+                                    className='custom-input rounded-5'
                                     required
                                     tabIndex={2}
                                     autoComplete="current-password"
@@ -77,12 +79,12 @@ export default function Login({ status, canResetPassword }: Props) {
                                     name="remember"
                                     tabIndex={3}
                                 />
-                                <Label htmlFor="remember">Remember me</Label>
+                                <Label htmlFor="remember" className='ms-2'>Remember me</Label>
                             </div>
 
                             <Button
                                 type="submit"
-                                className="mt-4 w-full"
+                                className="mt-4 w-full rounded-5"
                                 tabIndex={4}
                                 disabled={processing}
                                 data-test="login-button"
@@ -112,6 +114,6 @@ export default function Login({ status, canResetPassword }: Props) {
 }
 
 Login.layout = {
-    title: 'Log in to your account',
+    title: 'Welcome Back',
     description: 'Enter your email and password below to log in',
 };

@@ -31,6 +31,7 @@ export default function Register({ passwordRules }: Props) {
                                 <Input
                                     id="name"
                                     type="text"
+                                    className=' rounded-5'
                                     required
                                     autoFocus
                                     tabIndex={1}
@@ -49,6 +50,7 @@ export default function Register({ passwordRules }: Props) {
                                 <Input
                                     id="email"
                                     type="email"
+                                    className=' rounded-5'
                                     required
                                     tabIndex={2}
                                     autoComplete="email"
@@ -62,6 +64,7 @@ export default function Register({ passwordRules }: Props) {
                                 <Label htmlFor="password">Password</Label>
                                 <PasswordInput
                                     id="password"
+                                    className=' rounded-5'
                                     required
                                     tabIndex={3}
                                     autoComplete="new-password"
@@ -78,6 +81,7 @@ export default function Register({ passwordRules }: Props) {
                                 </Label>
                                 <PasswordInput
                                     id="password_confirmation"
+                                    className=' rounded-5'
                                     required
                                     tabIndex={4}
                                     autoComplete="new-password"
@@ -92,7 +96,7 @@ export default function Register({ passwordRules }: Props) {
 
                             <Button
                                 type="submit"
-                                className="mt-2 w-full"
+                                className="mt-2 w-full rounded-5"
                                 tabIndex={5}
                                 data-test="register-user-button"
                             >

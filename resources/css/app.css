@@ -97,6 +97,20 @@
     --sidebar-ring: oklch(0.87 0 0);
 }
 
+.custom-card {
+    transition: all 0.3s ease;
+    box-shadow: 2px 3px 5px 4px rgb(240, 248, 255);
+}
+
+.custom-card:hover {
+    /* transform: translateY(-5px); */
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.custom-input {
+    
+}
+
 .dark {
     --background: oklch(0.145 0 0);
     --foreground: oklch(0.985 0 0);
