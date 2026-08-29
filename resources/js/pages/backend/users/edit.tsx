@@ -7,8 +7,6 @@ import {
     Link,
     router,
 } from "@inertiajs/react";
-import { error } from "jquery";
-
 import { useState } from "react";
 
 interface Props {
