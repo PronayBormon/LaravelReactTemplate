@@ -102,10 +102,13 @@
     box-shadow: 2px 3px 5px 4px rgb(240, 248, 255);
 }
 
-.custom-card:hover {
-    /* transform: translateY(-5px); */
+/* .custom-card:hover {
     box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.15) !important;
 }
+
+[data-bs-theme="dark"].custom-card:hover {
+  box-shadow: 0 0.75rem 1.5rem rgba(255, 255, 255, 0.67) !important;
+} */
 
 .custom-input {
     

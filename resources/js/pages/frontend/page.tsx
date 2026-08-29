@@ -17,7 +17,7 @@ export default function Page({ page }: Props) {
         <>
             <Head title={page.title} />
 
-            <main className="min-h-screen bg-[#f7f7f2] text-[#1b1b18]">
+            <main className="min-h-screen">
                 <header className="border-b border-black/10 bg-white">
                     <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
                         <Link

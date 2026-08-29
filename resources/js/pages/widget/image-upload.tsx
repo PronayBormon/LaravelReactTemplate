@@ -5,13 +5,9 @@ interface Props {
     file: File | null;
     onChange: (file: File | null) => void;
     imageUrl?: string;
-
     previewBackground?: string;
-
     height?: string;
-
     previewClassName?: string;
-
     accept?: string;
 }
 
@@ -49,7 +45,7 @@ export default function ImageUpload({
                             previewBackground,
                         minHeight: height,
                     }}>
-                    <div className="product-upload">
+                    <div className="product-upload d-flex justify-content-center">
                         {preview ? (
                             <img
                                 src={preview}

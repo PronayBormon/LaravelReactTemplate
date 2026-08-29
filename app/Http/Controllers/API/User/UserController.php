@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\User;
 use App\Concerns\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdatePassword;
+use App\Services\Auth\AuthService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -15,6 +16,10 @@ use Illuminate\Validation\Rule;
 class UserController extends Controller
 {
     use ApiResponse;
+
+    public function __construct(
+        protected AuthService $service
+    ) {}
 
     private array $notificationFields = [
         'email_notifications',
@@ -37,7 +42,8 @@ class UserController extends Controller
         $user = $request->user();
 
         $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => [
                 'required',
                 'email',
@@ -154,5 +160,10 @@ class UserController extends Controller
             'Notification settings updated successfully',
             $user->fresh()->only($this->notificationFields)
         );
+    }
+
+    public function destroy(Request $request)
+    {
+        return $this->service->delete($request->user());
     }
 }

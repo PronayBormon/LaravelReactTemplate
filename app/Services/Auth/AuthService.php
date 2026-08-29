@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 
 class AuthService
@@ -113,6 +114,7 @@ class AuthService
         if (!$user) {
             throw new \Exception('User not found');
         }
+
         $otp = (new Otp)->generate($email, 'numeric', 6, 15);
         Mail::to($email)->send(new ForgetPassword($user, $otp->token));
 
@@ -153,6 +155,84 @@ class AuthService
                 $user->password = Hash::make($password);
                 $user->save();
             }
+        );
+    }
+
+
+    public function resendOtp($email, $type)
+    {
+        $user = $this->repository->findByEmail($email);
+
+        if (!$user) {
+            throw new \Exception('User not found');
+        }
+
+        if ($type === 'register_otp') {
+
+            if ($user->email_verified_at) {
+                throw new \Exception('Email already verified');
+            }
+
+            $otp = (new Otp)->generate(
+                $email,
+                'numeric',
+                6,
+                15
+            );
+
+            Mail::to($email)->send(
+                new VerifyRegister($user, $otp->token)
+            );
+
+            return [
+                'token' => $otp->token,
+                // 'user' => $user,
+            ];
+        }
+
+        if ($type === 'forgot_password_otp') {
+
+            $otp = (new Otp)->generate(
+                $email,
+                'numeric',
+                6,
+                15
+            );
+
+            Mail::to($email)->send(
+                new ForgetPassword($user, $otp->token)
+            );
+
+            return [
+                'token' => $otp->token,
+                // 'user' => $user,
+            ];
+        }
+
+        throw new \Exception('Invalid OTP type');
+    }
+
+
+
+    public function delete(User $user)
+    {
+        $avatar = $user->getRawOriginal('avatar');
+
+        if (
+            $avatar &&
+            Storage::disk('public')->exists(
+                str_replace('storage/', '', $avatar)
+            )
+        ) {
+            Storage::disk('public')->delete(
+                str_replace('storage/', '', $avatar)
+            );
+        }
+
+        $this->repository->delete($user);
+
+        return $this->successResponse(
+            'Account deleted successfully'
         );
     }
 }

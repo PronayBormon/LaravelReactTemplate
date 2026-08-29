@@ -15,4 +15,9 @@ class AuthRepository
     {
         return User::where('email', $email)->first();
     }
+
+    public function delete(User $user): bool
+    {
+        return $user->delete();
+    }
 }

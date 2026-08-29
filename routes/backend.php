@@ -21,7 +21,7 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     Route::post('/users', [UserController::class, 'store'])->name('admin.users.store');
     Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit');
     Route::get('/user/show/{id}', [UserController::class, 'show'])->name('admin.users.show');
-    Route::put('/users/{id}', [UserController::class, 'update'])->name('admin.users.update');
+    Route::post('/users/{id}', [UserController::class, 'update'])->name('admin.users.update');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
     Route::get('users/{user}/sessions', [UserController::class, 'sessions'])->name('admin.users.sessions');
 

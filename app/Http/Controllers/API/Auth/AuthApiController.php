@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Services\Auth\AuthService;
 use Ichtrojan\Otp\Otp;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 
@@ -75,17 +76,37 @@ class AuthApiController extends Controller
         );
     }
 
+
+
     public function forgotPassword(ForgotPasswordRequest $request)
     {
-        $data = $this->service->forgotPassword(
-            $request->email
-        );
+        // dd("Ok");
+        try {
+            $data = $this->service->forgotPassword(
+                $request->email
+            );
 
-        return $this->successResponse(
-            'Otp sent to your email',
-            $data,
-        );
+            return $this->successResponse('Otp sent to your email', $data);
+        } catch (\Throwable $th) {
+            return $this->errorResponse($th->getMessage());
+        }
     }
+
+
+    public function resendForgetOtp(Request $request)
+    {
+        $validate = Validator::make($request->all(), [
+            'email' => 'required|email',
+        ]);
+
+        if ($validate->fails()) {
+            return $this->errorResponse($validate->errors()->first(), 422, $validate->errors());
+        }
+
+        $result = $this->service->resendOtp($request->email, 'forgot_password_otp');
+        return $this->successResponse('Otp Send to Email', $result, 201);
+    }
+
 
 
     public function verifyForgetPass(OtpVerify $request)
@@ -114,33 +135,38 @@ class AuthApiController extends Controller
     }
 
 
+
     public function resetPassword(ResetPasswordRequest $request)
     {
-        $user = User::where('email', $request->email)->first();
+        try {
+            $user = User::where(
+                'remember_token',
+                $request->reset_token
+            )->first();
 
-        if (!$user) {
-            return $this->errorResponse('User not found', 404);
+            if (!$user) {
+                return $this->errorResponse(
+                    'User not found or invalid reset token',
+                    404
+                );
+            }
+
+            $user->update([
+                'password' => Hash::make($request->password),
+                'remember_token' => null,
+            ]);
+
+            return $this->successResponse(
+                'Password reset successfully',
+                null,
+                200
+            );
+        } catch (\Throwable $th) {
+            return $this->errorResponse(
+                $th->getMessage(),
+                500
+            );
         }
-
-        if ($user->remember_token != $request->reset_token) {
-            return $this->errorResponse('Token is not match', 401);
-        }
-
-        if (!$user->remember_token) {
-            return $this->errorResponse('Invalid or expired reset token', 422);
-        }
-
-        $user->update([
-            'remember_token' => null,
-        ]);
-
-        Password::deleteToken($user);
-
-        return $this->successResponse(
-            'Password reset successfully',
-            null,
-            200
-        );
     }
 
     // logout

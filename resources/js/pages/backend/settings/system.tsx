@@ -288,7 +288,7 @@ export default function System({
                         </div> */}
 
                         {/* Maintenance */}
-                        <div className="col-lg-12">
+                        {/* <div className="col-lg-12">
                             <div className="mb-20">
                                 <div className="form-check form-switch">
                                     <input
@@ -315,12 +315,12 @@ export default function System({
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* Light Logo */}
                         <div className="col-lg-4">
                             <ImageUpload
-                                label="Light Logo"
+                                label="Light theme Logo"
                                 file={data.light_logo}
                                 imageUrl={
                                     setting?.light_logo
@@ -330,13 +330,14 @@ export default function System({
                                 onChange={(file) =>
                                     setData('light_logo', file)
                                 }
+                                height="100px"
                             />
                         </div>
 
                         {/* Dark Logo */}
                         <div className="col-lg-4">
                             <ImageUpload
-                                label="Dark Logo"
+                                label="Dark theme Logo"
                                 file={data.dark_logo}
                                 imageUrl={
                                     setting?.dark_logo
@@ -346,6 +347,7 @@ export default function System({
                                 onChange={(file) =>
                                     setData('dark_logo', file)
                                 }
+                                height="100px"
                                 previewBackground="#0f172a"
                                 previewClassName="text-white"
                             />
@@ -364,12 +366,12 @@ export default function System({
                                 onChange={(file) =>
                                     setData('favicon', file)
                                 }
-                                height="180px"
+                                height="100px"
                             />
                         </div>
 
                         {/* Meta Title */}
-                        <div className="col-lg-12">
+                        {/* <div className="col-lg-12">
                             <div className="mb-20">
                                 <label className="label fs-16 mb-2">
                                     Meta Title
@@ -394,10 +396,10 @@ export default function System({
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* Meta Description */}
-                        <div className="col-lg-12">
+                        {/* <div className="col-lg-12">
                             <div className="mb-20">
                                 <label className="label fs-16 mb-2">
                                     Meta Description
@@ -415,10 +417,10 @@ export default function System({
                                     }
                                 />
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* Socials */}
-                        <div className="col-lg-12">
+                        {/* <div className="col-lg-12">
                             <div className="mb-20">
                                 <h3 className="fs-22">
                                     Social Profiles
@@ -465,10 +467,10 @@ export default function System({
                                     </div>
                                 </div>
                             </div>
-                        ))}
+                        ))} */}
 
                         {/* Footer Text */}
-                        <div className="col-lg-12">
+                        {/* <div className="col-lg-12">
                             <div className="mb-20">
                                 <label className="label fs-16 mb-2">
                                     Footer Text
@@ -486,7 +488,7 @@ export default function System({
                                     }
                                 />
                             </div>
-                        </div>
+                        </div> */}
 
 
                         {/* Address */}

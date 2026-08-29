@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route::inertia('/', 'welcome')->name('home');
 Route::get('/', [DashboardController::class, 'home'])->name('home');
+Route::get('/dashboard', [DashboardController::class, 'home'])->name('dashboard');
 
 Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('frontend.privacy.policy');
 Route::get('/terms-and-conditions', [PageController::class, 'termsAndConditions'])->name('frontend.terms.conditions');

@@ -112,11 +112,14 @@ export default function MainSidebar() {
     );
     const { resolvedAppearance } = useAppearance();
 
+    const darkLogo = setting?.dark_logo ?? 'backend/assets/images/logo-white.png';
+    const lightlogo = setting?.light_logo ?? 'backend/assets/images/logo.png';
+
     const logo =
         resolvedAppearance === 'dark'
-            ? setting?.dark_logo
-            : setting?.light_logo;
-
+            ? darkLogo
+            : lightlogo;
+            
     const toggleSidebar = () => {
         const current = document.body.getAttribute('sidebar-data-theme');
 
@@ -191,7 +194,7 @@ export default function MainSidebar() {
                             >
                                 {hasChildren ? (
                                     <>
-                                        <a className={`menu-link menu-toggle ${isOpen ? 'active' : '' }`} href="javascript:void(0);"
+                                        <a className={`menu-link menu-toggle ${isOpen ? 'active' : ''}`} href="javascript:void(0);"
                                             onClick={() =>
                                                 setOpenMenu(
                                                     isOpen ? null : item.title

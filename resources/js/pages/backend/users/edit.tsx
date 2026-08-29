@@ -7,6 +7,7 @@ import {
     Link,
     router,
 } from "@inertiajs/react";
+import { error } from "jquery";
 
 import { useState } from "react";
 
@@ -39,24 +40,13 @@ export default function Edit({
     |--------------------------------------------------------------------------
     */
 
-    const submit = (
-        e: React.FormEvent
-    ) => {
+    const submit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        router.post(
-            `/admin/users/${user.id}`,
-            {
-                ...data,
-
-                _method: 'put',
-            },
-            {
-                forceFormData: true,
-
-                preserveScroll: true,
-            }
-        );
+        post(`/admin/users/${user.id}`, {
+            forceFormData: true,
+            preserveScroll: true,
+        });
     };
 
     /*
@@ -265,9 +255,7 @@ export default function Edit({
 
                                     {errors.password && (
                                         <div className="text-danger mt-1">
-                                            {
-                                                errors.password
-                                            }
+                                            {errors.password}
                                         </div>
                                     )}
                                 </div>
@@ -402,7 +390,7 @@ export default function Edit({
                                             .target
                                             .value
                                     )
-                                    
+
                                 }
                             >
                                 <option value="">

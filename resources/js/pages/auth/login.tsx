@@ -37,7 +37,7 @@ export default function Login({ status, canResetPassword }: Props) {
                                 <Input
                                     id="email"
                                     type="email"
-                                    className=' rounded-5'
+                                    className=' rounded-2'
                                     name="email"
                                     required
                                     autoFocus
@@ -64,7 +64,7 @@ export default function Login({ status, canResetPassword }: Props) {
                                 <PasswordInput
                                     id="password"
                                     name="password"
-                                    className='custom-input rounded-5'
+                                    className='custom-input rounded-2'
                                     required
                                     tabIndex={2}
                                     autoComplete="current-password"
@@ -84,7 +84,7 @@ export default function Login({ status, canResetPassword }: Props) {
 
                             <Button
                                 type="submit"
-                                className="mt-4 w-full rounded-5"
+                                className="mt-4 w-full rounded-2"
                                 tabIndex={4}
                                 disabled={processing}
                                 data-test="login-button"

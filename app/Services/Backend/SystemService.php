@@ -5,6 +5,7 @@ namespace App\Services\Backend;
 use App\Repository\Backend\SystemRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class SystemService
 {
@@ -23,7 +24,7 @@ class SystemService
 
     public function update(Request $request)
     {
-        $validated = $request->validate([
+        $validator = Validator::make($request->all(), [
             'site_name' => ['nullable', 'string'],
             'site_email' => ['nullable', 'email'],
             'site_phone' => ['nullable', 'string'],
@@ -74,11 +75,14 @@ class SystemService
 
             'favicon' => [
                 'nullable',
-                'image',
                 'mimes:jpg,jpeg,png,ico,webp',
                 'max:6024',
             ],
         ]);
+
+        // dd($validated->errors());
+
+        $validated = $validator->validated();
 
         $setting = $this->repo->first();
 

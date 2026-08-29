@@ -17,7 +17,6 @@ export default function ResetPassword({ token, email, passwordRules }: Props) {
     return (
         <>
             <Head title="Reset password" />
-
             <Form
                 {...update.form()}
                 transform={(data) => ({ ...data, token, email })}
