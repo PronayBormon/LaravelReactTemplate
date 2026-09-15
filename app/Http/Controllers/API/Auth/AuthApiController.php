@@ -39,6 +39,21 @@ class AuthApiController extends Controller
         );
     }
 
+    public function resendRegisterOtp(Request $request)
+    {
+        $validate = Validator::make($request->all(), [
+            'email' => 'required|email',
+        ]);
+
+        if ($validate->fails()) {
+            return $this->errorResponse($validate->errors()->first(), 422, $validate->errors());
+        }
+
+        $result = $this->service->resendOtp($request->email, 'register_otp');
+        return $this->successResponse('Otp Send to Email', $result, 201);
+    }
+
+
     public function verifyRegister(OtpVerify $request)
     {
         $validate = (new Otp)->validate(
