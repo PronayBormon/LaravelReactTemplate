@@ -29,7 +29,7 @@ export default function AppLogo() {
                         }
                         alt="Logo"
                         style={{
-                            width: "100%",
+                            width: "60%",
                             height: "auto",
                             objectFit: "contain",
                         }}
@@ -43,7 +43,7 @@ export default function AppLogo() {
                         }
                         alt="Logo"
                         style={{
-                            width: "100%",
+                            width: "60%",
                             height: "auto",
                             objectFit: "contain",
                         }}
